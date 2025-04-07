@@ -47,8 +47,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             PanelMain = new Guna.UI2.WinForms.Guna2Panel();
+            PanelMainArtists = new Panel();
+            PanelMainLibrary = new Panel();
+            PanelMainAlbums = new Panel();
+            PanelMainLibraryLabelPlaylists = new Label();
             ButtonLibrary = new Guna.UI2.WinForms.Guna2Button();
-            BuutonPerformers = new Guna.UI2.WinForms.Guna2Button();
+            ButtonArtists = new Guna.UI2.WinForms.Guna2Button();
             ButtonAlbums = new Guna.UI2.WinForms.Guna2Button();
             PanelMulti = new Guna.UI2.WinForms.Guna2Panel();
             ButtonQueue = new Guna.UI2.WinForms.Guna2Button();
@@ -58,6 +62,7 @@
             ButtonClose = new Guna.UI2.WinForms.Guna2Button();
             PanelPlayer = new Panel();
             PanelMain.SuspendLayout();
+            PanelMainLibrary.SuspendLayout();
             PanelMulti.SuspendLayout();
             PanelTop.SuspendLayout();
             SuspendLayout();
@@ -65,8 +70,11 @@
             // PanelMain
             // 
             PanelMain.BorderRadius = 12;
+            PanelMain.Controls.Add(PanelMainArtists);
+            PanelMain.Controls.Add(PanelMainAlbums);
+            PanelMain.Controls.Add(PanelMainLibrary);
             PanelMain.Controls.Add(ButtonLibrary);
-            PanelMain.Controls.Add(BuutonPerformers);
+            PanelMain.Controls.Add(ButtonArtists);
             PanelMain.Controls.Add(ButtonAlbums);
             PanelMain.CustomizableEdges = customizableEdges7;
             PanelMain.FillColor = Color.FromArgb(39, 36, 36);
@@ -76,6 +84,43 @@
             PanelMain.ShadowDecoration.CustomizableEdges = customizableEdges8;
             PanelMain.Size = new Size(586, 407);
             PanelMain.TabIndex = 0;
+            // 
+            // PanelMainArtists
+            // 
+            PanelMainArtists.BackColor = Color.Transparent;
+            PanelMainArtists.Location = new Point(0, 51);
+            PanelMainArtists.Name = "PanelMainArtists";
+            PanelMainArtists.Size = new Size(586, 356);
+            PanelMainArtists.TabIndex = 4;
+            PanelMainArtists.Visible = false;
+            // 
+            // PanelMainLibrary
+            // 
+            PanelMainLibrary.BackColor = Color.Transparent;
+            PanelMainLibrary.Controls.Add(PanelMainLibraryLabelPlaylists);
+            PanelMainLibrary.Location = new Point(0, 51);
+            PanelMainLibrary.Name = "PanelMainLibrary";
+            PanelMainLibrary.Size = new Size(586, 356);
+            PanelMainLibrary.TabIndex = 3;
+            // 
+            // PanelMainAlbums
+            // 
+            PanelMainAlbums.BackColor = Color.Transparent;
+            PanelMainAlbums.Location = new Point(1, 51);
+            PanelMainAlbums.Name = "PanelMainAlbums";
+            PanelMainAlbums.Size = new Size(586, 356);
+            PanelMainAlbums.TabIndex = 4;
+            PanelMainAlbums.Visible = false;
+            // 
+            // PanelMainLibraryLabelPlaylists
+            // 
+            PanelMainLibraryLabelPlaylists.AutoSize = true;
+            PanelMainLibraryLabelPlaylists.ForeColor = Color.White;
+            PanelMainLibraryLabelPlaylists.Location = new Point(11, 15);
+            PanelMainLibraryLabelPlaylists.Name = "PanelMainLibraryLabelPlaylists";
+            PanelMainLibraryLabelPlaylists.Size = new Size(87, 16);
+            PanelMainLibraryLabelPlaylists.TabIndex = 0;
+            PanelMainLibraryLabelPlaylists.Text = "Плейлисты:";
             // 
             // ButtonLibrary
             // 
@@ -96,26 +141,28 @@
             ButtonLibrary.Size = new Size(115, 25);
             ButtonLibrary.TabIndex = 2;
             ButtonLibrary.Text = "Библиотека";
+            ButtonLibrary.Click += PanelMain_ButtonClick;
             // 
-            // BuutonPerformers
+            // ButtonArtists
             // 
-            BuutonPerformers.BackColor = Color.FromArgb(39, 36, 36);
-            BuutonPerformers.BorderRadius = 12;
-            BuutonPerformers.CustomizableEdges = customizableEdges3;
-            BuutonPerformers.DisabledState.BorderColor = Color.DarkGray;
-            BuutonPerformers.DisabledState.CustomBorderColor = Color.DarkGray;
-            BuutonPerformers.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            BuutonPerformers.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            BuutonPerformers.FillColor = Color.FromArgb(112, 103, 103);
-            BuutonPerformers.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            BuutonPerformers.ForeColor = Color.White;
-            BuutonPerformers.Location = new Point(223, 14);
-            BuutonPerformers.Margin = new Padding(0);
-            BuutonPerformers.Name = "BuutonPerformers";
-            BuutonPerformers.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            BuutonPerformers.Size = new Size(115, 25);
-            BuutonPerformers.TabIndex = 1;
-            BuutonPerformers.Text = "Исполнители";
+            ButtonArtists.BackColor = Color.FromArgb(39, 36, 36);
+            ButtonArtists.BorderRadius = 12;
+            ButtonArtists.CustomizableEdges = customizableEdges3;
+            ButtonArtists.DisabledState.BorderColor = Color.DarkGray;
+            ButtonArtists.DisabledState.CustomBorderColor = Color.DarkGray;
+            ButtonArtists.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            ButtonArtists.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            ButtonArtists.FillColor = Color.FromArgb(112, 103, 103);
+            ButtonArtists.Font = new Font("Courier New", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            ButtonArtists.ForeColor = Color.White;
+            ButtonArtists.Location = new Point(223, 14);
+            ButtonArtists.Margin = new Padding(0);
+            ButtonArtists.Name = "ButtonArtists";
+            ButtonArtists.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            ButtonArtists.Size = new Size(115, 25);
+            ButtonArtists.TabIndex = 1;
+            ButtonArtists.Text = "Исполнители";
+            ButtonArtists.Click += PanelMain_ButtonClick;
             // 
             // ButtonAlbums
             // 
@@ -136,6 +183,7 @@
             ButtonAlbums.Size = new Size(85, 25);
             ButtonAlbums.TabIndex = 0;
             ButtonAlbums.Text = "Альбомы";
+            ButtonAlbums.Click += PanelMain_ButtonClick;
             // 
             // PanelMulti
             // 
@@ -170,6 +218,7 @@
             ButtonQueue.Size = new Size(85, 25);
             ButtonQueue.TabIndex = 4;
             ButtonQueue.Text = "Очередь";
+            ButtonQueue.Click += PanelMulti_ButtonClick;
             // 
             // BuutonAbout
             // 
@@ -190,6 +239,7 @@
             BuutonAbout.Size = new Size(115, 25);
             BuutonAbout.TabIndex = 3;
             BuutonAbout.Text = "О текущем";
+            BuutonAbout.Click += PanelMulti_ButtonClick;
             // 
             // PanelPlaylist
             // 
@@ -256,6 +306,8 @@
             Name = "MainForm";
             Text = "MainForm";
             PanelMain.ResumeLayout(false);
+            PanelMainLibrary.ResumeLayout(false);
+            PanelMainLibrary.PerformLayout();
             PanelMulti.ResumeLayout(false);
             PanelTop.ResumeLayout(false);
             ResumeLayout(false);
@@ -267,12 +319,16 @@
         private Guna.UI2.WinForms.Guna2Panel PanelMulti;
         private Guna.UI2.WinForms.Guna2Panel PanelPlaylist;
         private Guna.UI2.WinForms.Guna2Button ButtonAlbums;
-        private Guna.UI2.WinForms.Guna2Button BuutonPerformers;
+        private Guna.UI2.WinForms.Guna2Button ButtonArtists;
         private Guna.UI2.WinForms.Guna2Button ButtonLibrary;
         private Panel PanelTop;
         private Guna.UI2.WinForms.Guna2Button ButtonQueue;
         private Guna.UI2.WinForms.Guna2Button BuutonAbout;
         private Panel PanelPlayer;
         private Guna.UI2.WinForms.Guna2Button ButtonClose;
+        private Panel PanelMainLibrary;
+        private Panel PanelMainAlbums;
+        private Panel PanelMainArtists;
+        private Label PanelMainLibraryLabelPlaylists;
     }
 }
