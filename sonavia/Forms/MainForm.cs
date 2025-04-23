@@ -26,7 +26,8 @@ namespace sonavia.Forms
 
         private void OnLoad()
         {
-
+            ActivateStartButtons();
+            SetButtonsCollections();
         }
 
         private void PanelTop_MouseDown(object sender, MouseEventArgs e)
@@ -52,6 +53,25 @@ namespace sonavia.Forms
         private void ButtonClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void ActivateStartButtons()
+        {
+            actionButtonLibrary.FillColor = Utils.Color.orange;
+            actionButtonQueue.FillColor = Utils.Color.orange;
+            labelTitle.Text = "Библиотека:";
+        }
+
+        private void SetButtonsCollections()
+        {
+            foreach (ActionButton actionButton in splitContainerMain.Panel1.Controls.OfType<ActionButton>())
+            {
+                actionButton.SetPanelCollection([panelLibrary, panelAlbums, panelArtists]);
+            }
+            foreach (ActionButton actionButton in splitContainerыSupportive.Panel1.Controls.OfType<ActionButton>())
+            {
+                actionButton.SetPanelCollection([panelQueue, panelAbout]);
+            }
         }
     }
 }

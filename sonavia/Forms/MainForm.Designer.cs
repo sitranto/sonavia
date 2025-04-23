@@ -32,6 +32,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -42,35 +46,50 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             tableLayoutPanel1 = new TableLayoutPanel();
             PanelTop = new Panel();
             ButtonClose = new Guna.UI2.WinForms.Guna2Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            splitContainerыSupportive = new SplitContainer();
+            actionButtonAbout = new sonavia.UserControls.ActionButton();
+            actionButtonQueue = new sonavia.UserControls.ActionButton();
+            panelAbout = new Panel();
+            label5 = new Label();
+            panelQueue = new Panel();
+            label4 = new Label();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2PanelMain = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerMain = new SplitContainer();
             actionButtonArtists = new sonavia.UserControls.ActionButton();
-            actionButtoAlbums = new sonavia.UserControls.ActionButton();
+            actionButtonAlbums = new sonavia.UserControls.ActionButton();
             actionButtonLibrary = new sonavia.UserControls.ActionButton();
-            splitContainerыSupportive = new SplitContainer();
-            actionButtonQueue = new sonavia.UserControls.ActionButton();
-            actionButton1 = new sonavia.UserControls.ActionButton();
+            labelTitle = new Label();
+            panelArtists = new Panel();
+            label3 = new Label();
+            panelAlbums = new Panel();
+            label2 = new Label();
+            panelLibrary = new Panel();
+            label1 = new Label();
+            player1 = new sonavia.UserControls.Player();
             tableLayoutPanel1.SuspendLayout();
             PanelTop.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             guna2Panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerыSupportive).BeginInit();
+            splitContainerыSupportive.Panel1.SuspendLayout();
+            splitContainerыSupportive.Panel2.SuspendLayout();
+            splitContainerыSupportive.SuspendLayout();
+            panelAbout.SuspendLayout();
+            panelQueue.SuspendLayout();
             guna2PanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).BeginInit();
             splitContainerMain.Panel1.SuspendLayout();
+            splitContainerMain.Panel2.SuspendLayout();
             splitContainerMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainerыSupportive).BeginInit();
-            splitContainerыSupportive.Panel1.SuspendLayout();
-            splitContainerыSupportive.SuspendLayout();
+            panelArtists.SuspendLayout();
+            panelAlbums.SuspendLayout();
+            panelLibrary.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -79,6 +98,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(PanelTop, 0, 0);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 1);
+            tableLayoutPanel1.Controls.Add(player1, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -150,6 +170,103 @@
             guna2Panel2.Size = new Size(222, 381);
             guna2Panel2.TabIndex = 2;
             // 
+            // splitContainerыSupportive
+            // 
+            splitContainerыSupportive.BackColor = Color.Transparent;
+            splitContainerыSupportive.Dock = DockStyle.Fill;
+            splitContainerыSupportive.ForeColor = SystemColors.ControlText;
+            splitContainerыSupportive.Location = new Point(0, 0);
+            splitContainerыSupportive.Name = "splitContainerыSupportive";
+            splitContainerыSupportive.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainerыSupportive.Panel1
+            // 
+            splitContainerыSupportive.Panel1.Controls.Add(actionButtonAbout);
+            splitContainerыSupportive.Panel1.Controls.Add(actionButtonQueue);
+            // 
+            // splitContainerыSupportive.Panel2
+            // 
+            splitContainerыSupportive.Panel2.Controls.Add(panelAbout);
+            splitContainerыSupportive.Panel2.Controls.Add(panelQueue);
+            splitContainerыSupportive.Size = new Size(222, 381);
+            splitContainerыSupportive.SplitterDistance = 55;
+            splitContainerыSupportive.TabIndex = 1;
+            // 
+            // actionButtonAbout
+            // 
+            actionButtonAbout.BackColor = Color.Transparent;
+            actionButtonAbout.BorderRadius = 12;
+            actionButtonAbout.CustomizableEdges = customizableEdges3;
+            actionButtonAbout.DisabledState.BorderColor = Color.DarkGray;
+            actionButtonAbout.DisabledState.CustomBorderColor = Color.DarkGray;
+            actionButtonAbout.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            actionButtonAbout.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            actionButtonAbout.FillColor = Color.FromArgb(112, 103, 103);
+            actionButtonAbout.Font = new Font("Segoe UI", 9F);
+            actionButtonAbout.ForeColor = Color.White;
+            actionButtonAbout.Location = new Point(111, 15);
+            actionButtonAbout.Name = "actionButtonAbout";
+            actionButtonAbout.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            actionButtonAbout.Size = new Size(90, 25);
+            actionButtonAbout.TabIndex = 7;
+            actionButtonAbout.Text = "Об аудио";
+            actionButtonAbout.UseTransparentBackground = true;
+            // 
+            // actionButtonQueue
+            // 
+            actionButtonQueue.BackColor = Color.Transparent;
+            actionButtonQueue.BorderRadius = 12;
+            actionButtonQueue.CustomizableEdges = customizableEdges5;
+            actionButtonQueue.DisabledState.BorderColor = Color.DarkGray;
+            actionButtonQueue.DisabledState.CustomBorderColor = Color.DarkGray;
+            actionButtonQueue.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            actionButtonQueue.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            actionButtonQueue.FillColor = Color.FromArgb(112, 103, 103);
+            actionButtonQueue.Font = new Font("Segoe UI", 9F);
+            actionButtonQueue.ForeColor = Color.White;
+            actionButtonQueue.Location = new Point(15, 15);
+            actionButtonQueue.Name = "actionButtonQueue";
+            actionButtonQueue.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            actionButtonQueue.Size = new Size(90, 25);
+            actionButtonQueue.TabIndex = 6;
+            actionButtonQueue.Text = "Очередь";
+            actionButtonQueue.UseTransparentBackground = true;
+            // 
+            // panelAbout
+            // 
+            panelAbout.Controls.Add(label5);
+            panelAbout.Location = new Point(15, 116);
+            panelAbout.Name = "panelAbout";
+            panelAbout.Size = new Size(200, 100);
+            panelAbout.TabIndex = 1;
+            panelAbout.Visible = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(73, 42);
+            label5.Name = "label5";
+            label5.Size = new Size(55, 16);
+            label5.TabIndex = 1;
+            label5.Text = "label5";
+            // 
+            // panelQueue
+            // 
+            panelQueue.Controls.Add(label4);
+            panelQueue.Location = new Point(15, 19);
+            panelQueue.Name = "panelQueue";
+            panelQueue.Size = new Size(200, 100);
+            panelQueue.TabIndex = 0;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(73, 42);
+            label4.Name = "label4";
+            label4.Size = new Size(55, 16);
+            label4.TabIndex = 1;
+            label4.Text = "label4";
+            // 
             // guna2Panel1
             // 
             guna2Panel1.BorderRadius = 12;
@@ -187,9 +304,17 @@
             // splitContainerMain.Panel1
             // 
             splitContainerMain.Panel1.Controls.Add(actionButtonArtists);
-            splitContainerMain.Panel1.Controls.Add(actionButtoAlbums);
+            splitContainerMain.Panel1.Controls.Add(actionButtonAlbums);
             splitContainerMain.Panel1.Controls.Add(actionButtonLibrary);
+            // 
+            // splitContainerMain.Panel2
+            // 
+            splitContainerMain.Panel2.Controls.Add(labelTitle);
+            splitContainerMain.Panel2.Controls.Add(panelArtists);
+            splitContainerMain.Panel2.Controls.Add(panelAlbums);
+            splitContainerMain.Panel2.Controls.Add(panelLibrary);
             splitContainerMain.Size = new Size(629, 381);
+            splitContainerMain.SplitterDistance = 55;
             splitContainerMain.TabIndex = 0;
             // 
             // actionButtonArtists
@@ -212,25 +337,25 @@
             actionButtonArtists.Text = "Исполнители";
             actionButtonArtists.UseTransparentBackground = true;
             // 
-            // actionButtoAlbums
+            // actionButtonAlbums
             // 
-            actionButtoAlbums.BackColor = Color.Transparent;
-            actionButtoAlbums.BorderRadius = 12;
-            actionButtoAlbums.CustomizableEdges = customizableEdges13;
-            actionButtoAlbums.DisabledState.BorderColor = Color.DarkGray;
-            actionButtoAlbums.DisabledState.CustomBorderColor = Color.DarkGray;
-            actionButtoAlbums.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            actionButtoAlbums.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            actionButtoAlbums.FillColor = Color.FromArgb(112, 103, 103);
-            actionButtoAlbums.Font = new Font("Segoe UI", 9F);
-            actionButtoAlbums.ForeColor = Color.White;
-            actionButtoAlbums.Location = new Point(126, 15);
-            actionButtoAlbums.Name = "actionButtoAlbums";
-            actionButtoAlbums.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            actionButtoAlbums.Size = new Size(105, 25);
-            actionButtoAlbums.TabIndex = 4;
-            actionButtoAlbums.Text = "Альбомы";
-            actionButtoAlbums.UseTransparentBackground = true;
+            actionButtonAlbums.BackColor = Color.Transparent;
+            actionButtonAlbums.BorderRadius = 12;
+            actionButtonAlbums.CustomizableEdges = customizableEdges13;
+            actionButtonAlbums.DisabledState.BorderColor = Color.DarkGray;
+            actionButtonAlbums.DisabledState.CustomBorderColor = Color.DarkGray;
+            actionButtonAlbums.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            actionButtonAlbums.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            actionButtonAlbums.FillColor = Color.FromArgb(112, 103, 103);
+            actionButtonAlbums.Font = new Font("Segoe UI", 9F);
+            actionButtonAlbums.ForeColor = Color.White;
+            actionButtonAlbums.Location = new Point(126, 15);
+            actionButtonAlbums.Name = "actionButtonAlbums";
+            actionButtonAlbums.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            actionButtonAlbums.Size = new Size(105, 25);
+            actionButtonAlbums.TabIndex = 4;
+            actionButtonAlbums.Text = "Альбомы";
+            actionButtonAlbums.UseTransparentBackground = true;
             // 
             // actionButtonLibrary
             // 
@@ -252,61 +377,76 @@
             actionButtonLibrary.Text = "Библиотека";
             actionButtonLibrary.UseTransparentBackground = true;
             // 
-            // splitContainerыSupportive
+            // labelTitle
             // 
-            splitContainerыSupportive.BackColor = Color.Transparent;
-            splitContainerыSupportive.Dock = DockStyle.Fill;
-            splitContainerыSupportive.ForeColor = SystemColors.ControlText;
-            splitContainerыSupportive.Location = new Point(0, 0);
-            splitContainerыSupportive.Name = "splitContainerыSupportive";
-            splitContainerыSupportive.Orientation = Orientation.Horizontal;
+            labelTitle.AutoSize = true;
+            labelTitle.ForeColor = SystemColors.Control;
+            labelTitle.Location = new Point(15, 0);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(55, 16);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "label1";
             // 
-            // splitContainerыSupportive.Panel1
+            // panelArtists
             // 
-            splitContainerыSupportive.Panel1.Controls.Add(actionButton1);
-            splitContainerыSupportive.Panel1.Controls.Add(actionButtonQueue);
-            splitContainerыSupportive.Size = new Size(222, 381);
-            splitContainerыSupportive.TabIndex = 1;
+            panelArtists.Controls.Add(label3);
+            panelArtists.Location = new Point(215, 116);
+            panelArtists.Name = "panelArtists";
+            panelArtists.Size = new Size(200, 100);
+            panelArtists.TabIndex = 2;
+            panelArtists.Visible = false;
             // 
-            // actionButtonQueue
+            // label3
             // 
-            actionButtonQueue.BackColor = Color.Transparent;
-            actionButtonQueue.BorderRadius = 12;
-            actionButtonQueue.CustomizableEdges = customizableEdges5;
-            actionButtonQueue.DisabledState.BorderColor = Color.DarkGray;
-            actionButtonQueue.DisabledState.CustomBorderColor = Color.DarkGray;
-            actionButtonQueue.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            actionButtonQueue.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            actionButtonQueue.FillColor = Color.FromArgb(112, 103, 103);
-            actionButtonQueue.Font = new Font("Segoe UI", 9F);
-            actionButtonQueue.ForeColor = Color.White;
-            actionButtonQueue.Location = new Point(15, 15);
-            actionButtonQueue.Name = "actionButtonQueue";
-            actionButtonQueue.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            actionButtonQueue.Size = new Size(90, 25);
-            actionButtonQueue.TabIndex = 6;
-            actionButtonQueue.Text = "Очередь";
-            actionButtonQueue.UseTransparentBackground = true;
+            label3.AutoSize = true;
+            label3.Location = new Point(73, 42);
+            label3.Name = "label3";
+            label3.Size = new Size(55, 16);
+            label3.TabIndex = 1;
+            label3.Text = "label3";
             // 
-            // actionButton1
+            // panelAlbums
             // 
-            actionButton1.BackColor = Color.Transparent;
-            actionButton1.BorderRadius = 12;
-            actionButton1.CustomizableEdges = customizableEdges3;
-            actionButton1.DisabledState.BorderColor = Color.DarkGray;
-            actionButton1.DisabledState.CustomBorderColor = Color.DarkGray;
-            actionButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            actionButton1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            actionButton1.FillColor = Color.FromArgb(112, 103, 103);
-            actionButton1.Font = new Font("Segoe UI", 9F);
-            actionButton1.ForeColor = Color.White;
-            actionButton1.Location = new Point(111, 15);
-            actionButton1.Name = "actionButton1";
-            actionButton1.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            actionButton1.Size = new Size(90, 25);
-            actionButton1.TabIndex = 7;
-            actionButton1.Text = "Об аудио";
-            actionButton1.UseTransparentBackground = true;
+            panelAlbums.Controls.Add(label2);
+            panelAlbums.Location = new Point(426, 19);
+            panelAlbums.Name = "panelAlbums";
+            panelAlbums.Size = new Size(200, 100);
+            panelAlbums.TabIndex = 1;
+            panelAlbums.Visible = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(73, 42);
+            label2.Name = "label2";
+            label2.Size = new Size(55, 16);
+            label2.TabIndex = 1;
+            label2.Text = "label2";
+            // 
+            // panelLibrary
+            // 
+            panelLibrary.Controls.Add(label1);
+            panelLibrary.Location = new Point(3, 19);
+            panelLibrary.Name = "panelLibrary";
+            panelLibrary.Size = new Size(200, 100);
+            panelLibrary.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(73, 42);
+            label1.Name = "label1";
+            label1.Size = new Size(55, 16);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+            // 
+            // player1
+            // 
+            player1.BackColor = Color.Transparent;
+            player1.Location = new Point(3, 446);
+            player1.Name = "player1";
+            player1.Size = new Size(908, 64);
+            player1.TabIndex = 7;
             // 
             // MainForm
             // 
@@ -324,13 +464,26 @@
             PanelTop.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
-            guna2PanelMain.ResumeLayout(false);
-            splitContainerMain.Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainerMain).EndInit();
-            splitContainerMain.ResumeLayout(false);
             splitContainerыSupportive.Panel1.ResumeLayout(false);
+            splitContainerыSupportive.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainerыSupportive).EndInit();
             splitContainerыSupportive.ResumeLayout(false);
+            panelAbout.ResumeLayout(false);
+            panelAbout.PerformLayout();
+            panelQueue.ResumeLayout(false);
+            panelQueue.PerformLayout();
+            guna2PanelMain.ResumeLayout(false);
+            splitContainerMain.Panel1.ResumeLayout(false);
+            splitContainerMain.Panel2.ResumeLayout(false);
+            splitContainerMain.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainerMain).EndInit();
+            splitContainerMain.ResumeLayout(false);
+            panelArtists.ResumeLayout(false);
+            panelArtists.PerformLayout();
+            panelAlbums.ResumeLayout(false);
+            panelAlbums.PerformLayout();
+            panelLibrary.ResumeLayout(false);
+            panelLibrary.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -345,10 +498,22 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private SplitContainer splitContainerMain;
         private UserControls.ActionButton actionButtonArtists;
-        private UserControls.ActionButton actionButtoAlbums;
+        private UserControls.ActionButton actionButtonAlbums;
         private UserControls.ActionButton actionButtonLibrary;
         private SplitContainer splitContainerыSupportive;
-        private UserControls.ActionButton actionButton1;
+        private UserControls.ActionButton actionButtonAbout;
         private UserControls.ActionButton actionButtonQueue;
+        private Label labelTitle;
+        private Panel panelArtists;
+        private Panel panelAlbums;
+        private Panel panelLibrary;
+        private Panel panelAbout;
+        private Panel panelQueue;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private UserControls.Player player1;
     }
 }
