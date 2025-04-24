@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using sonavia.Utils;
 using sonavia.UserControls;
+using sonavia;
 
 namespace sonavia.Forms
 {
     public partial class MainForm : Form
     {
+        private static readonly FileManager fileManager = new();
         private static bool isPanelTopMouseClicked = false;
         private static Point formLocation;
 
@@ -28,6 +30,9 @@ namespace sonavia.Forms
         {
             ActivateStartButtons();
             SetButtonsCollections();
+
+            // TODO тест метода, удалить в последствии
+            label1.Text = fileManager.GetAllTracks()[0];
         }
 
         private void PanelTop_MouseDown(object sender, MouseEventArgs e)
