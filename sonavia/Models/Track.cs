@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using sonavia;
 
 namespace sonavia.Models
 {
-    internal class Track(string name, string artist, string album, int durationInSeconds)
+    public class Track
     {
-        public string name = name;
-        public string artist = artist;
-        public string album = album;
-        public int durationInSeconds = durationInSeconds;
+        public string name;
+        public string artists;
+        public string album;
+        public string durationInSeconds;
+
+        public Track(string name, string[] artists, string album, string durationInSeconds)
+        {
+            this.name = name;
+            this.artists = Utils.ConvertStringArrayToOneString(artists);
+            this.album = album;
+            this.durationInSeconds = durationInSeconds == null ? "-" : durationInSeconds;
+        }
     }
 }

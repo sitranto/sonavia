@@ -7,32 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using sonavia.Models;
 
 namespace sonavia.UserControls
 {
     public partial class TrackEntry : UserControl
     {
-        public string name;
-        public string artist;
-        public string album;
-        public string duration;
+        private Track track;
 
-        public TrackEntry(string name, string artist, string album, string duration)
+        public TrackEntry(Track track)
         {
             InitializeComponent();
-            this.name = name;
-            this.artist = artist;
-            this.album = album;
-            this.duration = duration;
+            this.track = track; 
             SetLabels();
         }
 
         private void SetLabels()
         {
-            labelName.Text = name;
-            labelArtist.Text = artist;
-            labelAlbum.Text = album;
-            labelDuration.Text = duration;
+            labelName.Text = track.name;
+            labelArtist.Text = track.artists;
+            labelAlbum.Text = track.album;
+            labelDuration.Text = track.durationInSeconds.ToString();
         }
     }
 }

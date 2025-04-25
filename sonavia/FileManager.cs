@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
+using System.IO;
 
 namespace sonavia
 {
@@ -31,20 +33,20 @@ namespace sonavia
         /// Возвращает все треки mp3 формата, содержащиеся по адресу библиотеки из конфигурационного файла.
         /// </summary>
         /// <returns>Массив строк абсолютных путей всех треков или пустой массив, в случае отсутствия файлов в директории.</returns>
-        public string?[]? GetAllTracks()
+        public IEnumerable<Track> GetAllTracks()
         {
             var files = Directory.GetFiles(configuration.First(), "*.mp3");
-            IEnumerable<Track> tracks = new List<Track>();
+            List<Track> tracks = new List<Track>();
 
-            if (files != null)
+            if (files.Length > 0)
             {
                 foreach (var file in files)
                 {
-
+                    tracks.Add(GetTrackData(file));
                 }
             }
 
-            return Directory.GetFiles(configuration.First(), "*.mp3");
+            return tracks;
         }
 
         /// <summary>
@@ -67,33 +69,9 @@ namespace sonavia
 
         private Track GetTrackData(string path)
         {
-            var data = new byte[128];
-            string name = "";
-            string artist = "";
-            string album = "";
+            var file = TagLib.File.Create(path);
 
-            Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            stream.Seek(-128, SeekOrigin.End);
-            stream.Read(data, 0, 128);
-            stream.Close();
-
-            for (int i = 3; i < 33; i++)
-            {
-                if (data[i] != 0)
-                    name += Convert.ToChar(data[i]);
-            }
-            for (int i = 33; i < 63; i++)
-            {
-                if (data[i] != 0)
-                    artist += Convert.ToChar(data[i]);
-            }
-            for (int i = 63; i < 93; i++)
-            {
-                if (data[i] != 0)
-                    album += Convert.ToChar(data[i]);
-            }
-
-            return new Track(name, artist, album, 1);
+            return new Track(file.Tag.Title, file.Tag.Performers, file.Tag.Album, file.Tag.Length);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace sonavia.UserControls
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace sonavia.UserControls
 {
     partial class ActionButton
     {

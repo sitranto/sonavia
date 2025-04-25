@@ -1,4 +1,7 @@
-﻿namespace sonavia.UserControls
+﻿using System.Windows.Forms;
+using System.Drawing;
+
+namespace sonavia.UserControls
 {
     partial class Player
     {

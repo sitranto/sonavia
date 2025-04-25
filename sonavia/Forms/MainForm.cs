@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
-using sonavia.Utils;
 using sonavia.UserControls;
 using sonavia;
 using sonavia.Models;
@@ -70,11 +69,15 @@ namespace sonavia.Forms
         {
             foreach (ActionButton actionButton in splitContainerMain.Panel1.Controls.OfType<ActionButton>())
             {
-                actionButton.SetPanelCollection([panelLibrary, panelAlbums, panelArtists]);
+                // .NET 8.0
+                // actionButton.SetPanelCollection([panelLibrary, panelAlbums, panelArtists]);
+                actionButton.SetPanelCollection(new Panel[] { panelLibrary, panelAlbums, panelArtists });
             }
             foreach (ActionButton actionButton in splitContainerыSupportive.Panel1.Controls.OfType<ActionButton>())
             {
-                actionButton.SetPanelCollection([panelQueue, panelAbout]);
+                // .NET 5.0
+                // actionButton.SetPanelCollection([panelQueue, panelAbout]);
+                actionButton.SetPanelCollection(new Panel[] { panelQueue, panelAbout });
             }
         }
 
@@ -85,7 +88,7 @@ namespace sonavia.Forms
 
             foreach (var track in tracks)
             {
-                var trackEntry = new TrackEntry(track, track, track, track);
+                var trackEntry = new TrackEntry(track);
                 trackEntry.Location = new Point(12, y);
                 y += trackEntry.Height;
 

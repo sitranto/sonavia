@@ -1,4 +1,7 @@
-﻿namespace sonavia.Forms
+﻿using System.Windows.Forms;
+using System.Drawing;
+
+namespace sonavia.Forms
 {
     partial class MainForm : System.Windows.Forms.Form
     {
