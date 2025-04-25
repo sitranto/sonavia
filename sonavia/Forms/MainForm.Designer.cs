@@ -52,26 +52,26 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerыSupportive = new SplitContainer();
-            actionButtonAbout = new sonavia.UserControls.ActionButton();
-            actionButtonQueue = new sonavia.UserControls.ActionButton();
+            actionButtonAbout = new UserControls.ActionButton();
+            actionButtonQueue = new UserControls.ActionButton();
             panelAbout = new Panel();
-            label5 = new Label();
             panelQueue = new Panel();
-            label4 = new Label();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2PanelMain = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerMain = new SplitContainer();
-            actionButtonArtists = new sonavia.UserControls.ActionButton();
-            actionButtonAlbums = new sonavia.UserControls.ActionButton();
-            actionButtonLibrary = new sonavia.UserControls.ActionButton();
+            actionButtonArtists = new UserControls.ActionButton();
+            actionButtonAlbums = new UserControls.ActionButton();
+            actionButtonLibrary = new UserControls.ActionButton();
             labelTitle = new Label();
             panelArtists = new Panel();
-            label3 = new Label();
             panelAlbums = new Panel();
-            label2 = new Label();
             panelLibrary = new Panel();
+            guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
             label1 = new Label();
-            player1 = new sonavia.UserControls.Player();
+            player1 = new UserControls.Player();
             tableLayoutPanel1.SuspendLayout();
             PanelTop.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -80,15 +80,11 @@
             splitContainerыSupportive.Panel1.SuspendLayout();
             splitContainerыSupportive.Panel2.SuspendLayout();
             splitContainerыSupportive.SuspendLayout();
-            panelAbout.SuspendLayout();
-            panelQueue.SuspendLayout();
             guna2PanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).BeginInit();
             splitContainerMain.Panel1.SuspendLayout();
             splitContainerMain.Panel2.SuspendLayout();
             splitContainerMain.SuspendLayout();
-            panelArtists.SuspendLayout();
-            panelAlbums.SuspendLayout();
             panelLibrary.SuspendLayout();
             SuspendLayout();
             // 
@@ -234,38 +230,18 @@
             // 
             // panelAbout
             // 
-            panelAbout.Controls.Add(label5);
             panelAbout.Location = new Point(15, 116);
             panelAbout.Name = "panelAbout";
             panelAbout.Size = new Size(200, 100);
             panelAbout.TabIndex = 1;
             panelAbout.Visible = false;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(73, 42);
-            label5.Name = "label5";
-            label5.Size = new Size(55, 16);
-            label5.TabIndex = 1;
-            label5.Text = "label5";
-            // 
             // panelQueue
             // 
-            panelQueue.Controls.Add(label4);
             panelQueue.Location = new Point(15, 19);
             panelQueue.Name = "panelQueue";
             panelQueue.Size = new Size(200, 100);
             panelQueue.TabIndex = 0;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(73, 42);
-            label4.Name = "label4";
-            label4.Size = new Size(55, 16);
-            label4.TabIndex = 1;
-            label4.Text = "label4";
             // 
             // guna2Panel1
             // 
@@ -389,56 +365,79 @@
             // 
             // panelArtists
             // 
-            panelArtists.Controls.Add(label3);
-            panelArtists.Location = new Point(215, 116);
+            panelArtists.Location = new Point(426, 209);
             panelArtists.Name = "panelArtists";
             panelArtists.Size = new Size(200, 100);
             panelArtists.TabIndex = 2;
             panelArtists.Visible = false;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(73, 42);
-            label3.Name = "label3";
-            label3.Size = new Size(55, 16);
-            label3.TabIndex = 1;
-            label3.Text = "label3";
-            // 
             // panelAlbums
             // 
-            panelAlbums.Controls.Add(label2);
-            panelAlbums.Location = new Point(426, 19);
+            panelAlbums.Location = new Point(429, 91);
             panelAlbums.Name = "panelAlbums";
             panelAlbums.Size = new Size(200, 100);
             panelAlbums.TabIndex = 1;
             panelAlbums.Visible = false;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(73, 42);
-            label2.Name = "label2";
-            label2.Size = new Size(55, 16);
-            label2.TabIndex = 1;
-            label2.Text = "label2";
-            // 
             // panelLibrary
             // 
+            panelLibrary.AutoScroll = true;
+            panelLibrary.Controls.Add(guna2Separator1);
+            panelLibrary.Controls.Add(label4);
+            panelLibrary.Controls.Add(label3);
+            panelLibrary.Controls.Add(label2);
             panelLibrary.Controls.Add(label1);
             panelLibrary.Location = new Point(3, 19);
             panelLibrary.Name = "panelLibrary";
-            panelLibrary.Size = new Size(200, 100);
+            panelLibrary.Size = new Size(623, 290);
             panelLibrary.TabIndex = 0;
+            // 
+            // guna2Separator1
+            // 
+            guna2Separator1.Location = new Point(12, 31);
+            guna2Separator1.Name = "guna2Separator1";
+            guna2Separator1.Size = new Size(599, 10);
+            guna2Separator1.TabIndex = 7;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = SystemColors.Control;
+            label4.Location = new Point(482, 12);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 16);
+            label4.TabIndex = 6;
+            label4.Text = "Длительность";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = SystemColors.Control;
+            label3.Location = new Point(348, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(55, 16);
+            label3.TabIndex = 5;
+            label3.Text = "Альбом";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.Control;
+            label2.Location = new Point(171, 12);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 16);
+            label2.TabIndex = 4;
+            label2.Text = "Исполнитель";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(73, 42);
+            label1.ForeColor = SystemColors.Control;
+            label1.Location = new Point(38, 12);
             label1.Name = "label1";
-            label1.Size = new Size(55, 16);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            label1.Size = new Size(71, 16);
+            label1.TabIndex = 3;
+            label1.Text = "Название";
             // 
             // player1
             // 
@@ -468,20 +467,12 @@
             splitContainerыSupportive.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainerыSupportive).EndInit();
             splitContainerыSupportive.ResumeLayout(false);
-            panelAbout.ResumeLayout(false);
-            panelAbout.PerformLayout();
-            panelQueue.ResumeLayout(false);
-            panelQueue.PerformLayout();
             guna2PanelMain.ResumeLayout(false);
             splitContainerMain.Panel1.ResumeLayout(false);
             splitContainerMain.Panel2.ResumeLayout(false);
             splitContainerMain.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).EndInit();
             splitContainerMain.ResumeLayout(false);
-            panelArtists.ResumeLayout(false);
-            panelArtists.PerformLayout();
-            panelAlbums.ResumeLayout(false);
-            panelAlbums.PerformLayout();
             panelLibrary.ResumeLayout(false);
             panelLibrary.PerformLayout();
             ResumeLayout(false);
@@ -509,11 +500,11 @@
         private Panel panelLibrary;
         private Panel panelAbout;
         private Panel panelQueue;
-        private Label label5;
-        private Label label4;
-        private Label label3;
+        private UserControls.Player player1;
         private Label label2;
         private Label label1;
-        private UserControls.Player player1;
+        private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private Label label4;
+        private Label label3;
     }
 }

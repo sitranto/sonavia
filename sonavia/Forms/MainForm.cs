@@ -11,6 +11,7 @@ using Guna.UI2.WinForms;
 using sonavia.Utils;
 using sonavia.UserControls;
 using sonavia;
+using sonavia.Models;
 
 namespace sonavia.Forms
 {
@@ -30,9 +31,7 @@ namespace sonavia.Forms
         {
             ActivateStartButtons();
             SetButtonsCollections();
-
-            // TODO тест метода, удалить в последствии
-            label1.Text = fileManager.GetAllTracks()[0];
+            PaintTracksLibrary();
         }
 
         private void PanelTop_MouseDown(object sender, MouseEventArgs e)
@@ -76,6 +75,21 @@ namespace sonavia.Forms
             foreach (ActionButton actionButton in splitContainerыSupportive.Panel1.Controls.OfType<ActionButton>())
             {
                 actionButton.SetPanelCollection([panelQueue, panelAbout]);
+            }
+        }
+
+        private void PaintTracksLibrary()
+        {
+            var tracks = fileManager.GetAllTracks();
+            var y = 47;
+
+            foreach (var track in tracks)
+            {
+                var trackEntry = new TrackEntry(track, track, track, track);
+                trackEntry.Location = new Point(12, y);
+                y += trackEntry.Height;
+
+                panelLibrary.Controls.Add(trackEntry);
             }
         }
     }
