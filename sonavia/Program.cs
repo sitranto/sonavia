@@ -1,5 +1,3 @@
-using System.Windows.Forms;
-using System;
 using sonavia.Forms;
 
 namespace sonavia
@@ -15,8 +13,7 @@ namespace sonavia
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
 
-            // .NET 8.0
-            // ApplicationConfiguration.Initialize();
+            ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
         }
     }

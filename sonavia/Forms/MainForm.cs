@@ -69,22 +69,20 @@ namespace sonavia.Forms
         {
             foreach (ActionButton actionButton in splitContainerMain.Panel1.Controls.OfType<ActionButton>())
             {
-                // .NET 8.0
-                // actionButton.SetPanelCollection([panelLibrary, panelAlbums, panelArtists]);
-                actionButton.SetPanelCollection(new Panel[] { panelLibrary, panelAlbums, panelArtists });
+                actionButton.SetPanelCollection([panelLibrary, panelAlbums, panelArtists]);
+                // actionButton.SetPanelCollection(new Panel[] { panelLibrary, panelAlbums, panelArtists });
             }
             foreach (ActionButton actionButton in splitContainerыSupportive.Panel1.Controls.OfType<ActionButton>())
             {
-                // .NET 5.0
-                // actionButton.SetPanelCollection([panelQueue, panelAbout]);
-                actionButton.SetPanelCollection(new Panel[] { panelQueue, panelAbout });
+                actionButton.SetPanelCollection([panelQueue, panelAbout]);
+                // actionButton.SetPanelCollection(new Panel[] { panelQueue, panelAbout });
             }
         }
 
         private void PaintTracksLibrary()
         {
             var tracks = fileManager.GetAllTracks();
-            var y = 47;
+            var y = 67;
 
             foreach (var track in tracks)
             {

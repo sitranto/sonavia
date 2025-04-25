@@ -63,6 +63,16 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon__player_button_main_gray {
+            get {
+                object obj = ResourceManager.GetObject("icon _player_button_main_gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_player_button_back_gray {
             get {
                 object obj = ResourceManager.GetObject("icon_player_button_back_gray", resourceCulture);
@@ -106,6 +116,16 @@ namespace sonavia.Properties {
         internal static System.Drawing.Bitmap icon_player_button_shuffle_gray {
             get {
                 object obj = ResourceManager.GetObject("icon_player_button_shuffle_gray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap music_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("music_thumbnail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

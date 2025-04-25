@@ -1,7 +1,4 @@
-﻿using System.Windows.Forms;
-using System.Drawing;
-
-namespace sonavia.Forms
+﻿namespace sonavia.Forms
 {
     partial class MainForm : System.Windows.Forms.Form
     {
@@ -55,26 +52,29 @@ namespace sonavia.Forms
             tableLayoutPanel2 = new TableLayoutPanel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerыSupportive = new SplitContainer();
-            actionButtonAbout = new UserControls.ActionButton();
-            actionButtonQueue = new UserControls.ActionButton();
+            actionButtonAbout = new sonavia.UserControls.ActionButton();
+            actionButtonQueue = new sonavia.UserControls.ActionButton();
             panelAbout = new Panel();
             panelQueue = new Panel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2PanelMain = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerMain = new SplitContainer();
-            actionButtonArtists = new UserControls.ActionButton();
-            actionButtonAlbums = new UserControls.ActionButton();
-            actionButtonLibrary = new UserControls.ActionButton();
-            labelTitle = new Label();
+            actionButtonArtists = new sonavia.UserControls.ActionButton();
+            actionButtonAlbums = new sonavia.UserControls.ActionButton();
+            actionButtonLibrary = new sonavia.UserControls.ActionButton();
             panelArtists = new Panel();
             panelAlbums = new Panel();
             panelLibrary = new Panel();
+            labelTitle = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            player1 = new UserControls.Player();
+            player1 = new sonavia.UserControls.Player();
+            albumEntry1 = new sonavia.UserControls.AlbumEntry();
+            albumEntry2 = new sonavia.UserControls.AlbumEntry();
+            label5 = new Label();
             tableLayoutPanel1.SuspendLayout();
             PanelTop.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -88,6 +88,7 @@ namespace sonavia.Forms
             splitContainerMain.Panel1.SuspendLayout();
             splitContainerMain.Panel2.SuspendLayout();
             splitContainerMain.SuspendLayout();
+            panelAlbums.SuspendLayout();
             panelLibrary.SuspendLayout();
             SuspendLayout();
             // 
@@ -185,6 +186,7 @@ namespace sonavia.Forms
             // 
             // splitContainerыSupportive.Panel2
             // 
+            splitContainerыSupportive.Panel2.Controls.Add(panelArtists);
             splitContainerыSupportive.Panel2.Controls.Add(panelAbout);
             splitContainerыSupportive.Panel2.Controls.Add(panelQueue);
             splitContainerыSupportive.Size = new Size(222, 381);
@@ -288,8 +290,6 @@ namespace sonavia.Forms
             // 
             // splitContainerMain.Panel2
             // 
-            splitContainerMain.Panel2.Controls.Add(labelTitle);
-            splitContainerMain.Panel2.Controls.Add(panelArtists);
             splitContainerMain.Panel2.Controls.Add(panelAlbums);
             splitContainerMain.Panel2.Controls.Add(panelLibrary);
             splitContainerMain.Size = new Size(629, 381);
@@ -356,19 +356,9 @@ namespace sonavia.Forms
             actionButtonLibrary.Text = "Библиотека";
             actionButtonLibrary.UseTransparentBackground = true;
             // 
-            // labelTitle
-            // 
-            labelTitle.AutoSize = true;
-            labelTitle.ForeColor = SystemColors.Control;
-            labelTitle.Location = new Point(15, 0);
-            labelTitle.Name = "labelTitle";
-            labelTitle.Size = new Size(55, 16);
-            labelTitle.TabIndex = 0;
-            labelTitle.Text = "label1";
-            // 
             // panelArtists
             // 
-            panelArtists.Location = new Point(426, 209);
+            panelArtists.Location = new Point(15, 219);
             panelArtists.Name = "panelArtists";
             panelArtists.Size = new Size(200, 100);
             panelArtists.TabIndex = 2;
@@ -376,28 +366,42 @@ namespace sonavia.Forms
             // 
             // panelAlbums
             // 
-            panelAlbums.Location = new Point(429, 91);
+            panelAlbums.Controls.Add(label5);
+            panelAlbums.Controls.Add(albumEntry2);
+            panelAlbums.Controls.Add(albumEntry1);
+            panelAlbums.Location = new Point(3, 3);
             panelAlbums.Name = "panelAlbums";
-            panelAlbums.Size = new Size(200, 100);
+            panelAlbums.Size = new Size(521, 260);
             panelAlbums.TabIndex = 1;
             panelAlbums.Visible = false;
             // 
             // panelLibrary
             // 
             panelLibrary.AutoScroll = true;
+            panelLibrary.Controls.Add(labelTitle);
             panelLibrary.Controls.Add(guna2Separator1);
             panelLibrary.Controls.Add(label4);
             panelLibrary.Controls.Add(label3);
             panelLibrary.Controls.Add(label2);
             panelLibrary.Controls.Add(label1);
-            panelLibrary.Location = new Point(3, 19);
+            panelLibrary.Location = new Point(3, 3);
             panelLibrary.Name = "panelLibrary";
-            panelLibrary.Size = new Size(623, 290);
+            panelLibrary.Size = new Size(623, 306);
             panelLibrary.TabIndex = 0;
+            // 
+            // labelTitle
+            // 
+            labelTitle.AutoSize = true;
+            labelTitle.ForeColor = SystemColors.Control;
+            labelTitle.Location = new Point(15, 0);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(55, 16);
+            labelTitle.TabIndex = 8;
+            labelTitle.Text = "label1";
             // 
             // guna2Separator1
             // 
-            guna2Separator1.Location = new Point(12, 31);
+            guna2Separator1.Location = new Point(12, 51);
             guna2Separator1.Name = "guna2Separator1";
             guna2Separator1.Size = new Size(599, 10);
             guna2Separator1.TabIndex = 7;
@@ -406,7 +410,7 @@ namespace sonavia.Forms
             // 
             label4.AutoSize = true;
             label4.ForeColor = SystemColors.Control;
-            label4.Location = new Point(482, 12);
+            label4.Location = new Point(482, 32);
             label4.Name = "label4";
             label4.Size = new Size(103, 16);
             label4.TabIndex = 6;
@@ -416,7 +420,7 @@ namespace sonavia.Forms
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.Control;
-            label3.Location = new Point(348, 12);
+            label3.Location = new Point(382, 32);
             label3.Name = "label3";
             label3.Size = new Size(55, 16);
             label3.TabIndex = 5;
@@ -426,7 +430,7 @@ namespace sonavia.Forms
             // 
             label2.AutoSize = true;
             label2.ForeColor = SystemColors.Control;
-            label2.Location = new Point(171, 12);
+            label2.Location = new Point(224, 32);
             label2.Name = "label2";
             label2.Size = new Size(95, 16);
             label2.TabIndex = 4;
@@ -436,7 +440,7 @@ namespace sonavia.Forms
             // 
             label1.AutoSize = true;
             label1.ForeColor = SystemColors.Control;
-            label1.Location = new Point(38, 12);
+            label1.Location = new Point(98, 32);
             label1.Name = "label1";
             label1.Size = new Size(71, 16);
             label1.TabIndex = 3;
@@ -449,6 +453,32 @@ namespace sonavia.Forms
             player1.Name = "player1";
             player1.Size = new Size(908, 64);
             player1.TabIndex = 7;
+            // 
+            // albumEntry1
+            // 
+            albumEntry1.BackColor = Color.Transparent;
+            albumEntry1.Location = new Point(7, 32);
+            albumEntry1.Name = "albumEntry1";
+            albumEntry1.Size = new Size(171, 199);
+            albumEntry1.TabIndex = 0;
+            // 
+            // albumEntry2
+            // 
+            albumEntry2.BackColor = Color.Transparent;
+            albumEntry2.Location = new Point(186, 32);
+            albumEntry2.Name = "albumEntry2";
+            albumEntry2.Size = new Size(171, 199);
+            albumEntry2.TabIndex = 1;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = SystemColors.Control;
+            label5.Location = new Point(14, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(71, 16);
+            label5.TabIndex = 9;
+            label5.Text = "Альбомы:";
             // 
             // MainForm
             // 
@@ -473,9 +503,10 @@ namespace sonavia.Forms
             guna2PanelMain.ResumeLayout(false);
             splitContainerMain.Panel1.ResumeLayout(false);
             splitContainerMain.Panel2.ResumeLayout(false);
-            splitContainerMain.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).EndInit();
             splitContainerMain.ResumeLayout(false);
+            panelAlbums.ResumeLayout(false);
+            panelAlbums.PerformLayout();
             panelLibrary.ResumeLayout(false);
             panelLibrary.PerformLayout();
             ResumeLayout(false);
@@ -497,7 +528,6 @@ namespace sonavia.Forms
         private SplitContainer splitContainerыSupportive;
         private UserControls.ActionButton actionButtonAbout;
         private UserControls.ActionButton actionButtonQueue;
-        private Label labelTitle;
         private Panel panelArtists;
         private Panel panelAlbums;
         private Panel panelLibrary;
@@ -509,5 +539,9 @@ namespace sonavia.Forms
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Label label4;
         private Label label3;
+        private Label labelTitle;
+        private Label label5;
+        private UserControls.AlbumEntry albumEntry2;
+        private UserControls.AlbumEntry albumEntry1;
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.Windows.Forms;
-using System.Drawing;
-
-namespace sonavia.Forms
+﻿namespace sonavia.Forms
 {
     partial class SelectLibraryDirectoryForm
     {
