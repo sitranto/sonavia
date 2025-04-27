@@ -25,9 +25,9 @@ namespace sonavia.UserControls
         private void SetLabels()
         {
             labelName.Text = track.name;
-            labelArtist.Text = track.artists;
-            labelAlbum.Text = track.album;
-            labelDuration.Text = track.durationInSeconds.ToString();
+            labelArtist.Text = track.artist.name;
+            labelAlbum.Text = track.album.name;
+            labelDuration.Text = track.durationInSeconds;
         }
     }
 }

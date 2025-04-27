@@ -16,7 +16,6 @@ namespace sonavia.Forms
 {
     public partial class MainForm : Form
     {
-        private static readonly FileManager fileManager = new();
         private static bool isPanelTopMouseClicked = false;
         private static Point formLocation;
 
@@ -28,9 +27,11 @@ namespace sonavia.Forms
 
         private void OnLoad()
         {
+            FileManager.CreateCongigurationIfDoesntExists();
+            TrackManager.GetMusicData();
             ActivateStartButtons();
             SetButtonsCollections();
-            PaintTracksLibrary();
+            PaintLibrary();
         }
 
         private void PanelTop_MouseDown(object sender, MouseEventArgs e)
@@ -70,28 +71,38 @@ namespace sonavia.Forms
             foreach (ActionButton actionButton in splitContainerMain.Panel1.Controls.OfType<ActionButton>())
             {
                 actionButton.SetPanelCollection([panelLibrary, panelAlbums, panelArtists]);
-                // actionButton.SetPanelCollection(new Panel[] { panelLibrary, panelAlbums, panelArtists });
             }
             foreach (ActionButton actionButton in splitContainerыSupportive.Panel1.Controls.OfType<ActionButton>())
             {
                 actionButton.SetPanelCollection([panelQueue, panelAbout]);
-                // actionButton.SetPanelCollection(new Panel[] { panelQueue, panelAbout });
             }
         }
 
-        private void PaintTracksLibrary()
+        private void PaintLibrary()
         {
-            var tracks = fileManager.GetAllTracks();
             var y = 67;
 
-            foreach (var track in tracks)
+            foreach (var track in TrackManager.tracks)
             {
                 var trackEntry = new TrackEntry(track);
                 trackEntry.Location = new Point(12, y);
                 y += trackEntry.Height;
 
+
                 panelLibrary.Controls.Add(trackEntry);
             }
+
+            y = 5;
+
+            foreach (var album in TrackManager.albums)
+            {
+                var albumEntry = new AlbumEntry(album.name, album.artist.name);
+                albumEntry.Location = new Point(y, 5);
+                y += albumEntry.Width;
+
+                panelAlbums.Controls.Add(albumEntry);
+            }
         }
+
     }
 }

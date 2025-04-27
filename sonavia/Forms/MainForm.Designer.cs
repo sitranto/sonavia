@@ -54,6 +54,7 @@
             splitContainerыSupportive = new SplitContainer();
             actionButtonAbout = new sonavia.UserControls.ActionButton();
             actionButtonQueue = new sonavia.UserControls.ActionButton();
+            panelArtists = new Panel();
             panelAbout = new Panel();
             panelQueue = new Panel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -62,8 +63,8 @@
             actionButtonArtists = new sonavia.UserControls.ActionButton();
             actionButtonAlbums = new sonavia.UserControls.ActionButton();
             actionButtonLibrary = new sonavia.UserControls.ActionButton();
-            panelArtists = new Panel();
             panelAlbums = new Panel();
+            label5 = new Label();
             panelLibrary = new Panel();
             labelTitle = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
@@ -72,9 +73,6 @@
             label2 = new Label();
             label1 = new Label();
             player1 = new sonavia.UserControls.Player();
-            albumEntry1 = new sonavia.UserControls.AlbumEntry();
-            albumEntry2 = new sonavia.UserControls.AlbumEntry();
-            label5 = new Label();
             tableLayoutPanel1.SuspendLayout();
             PanelTop.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -233,6 +231,14 @@
             actionButtonQueue.Text = "Очередь";
             actionButtonQueue.UseTransparentBackground = true;
             // 
+            // panelArtists
+            // 
+            panelArtists.Location = new Point(15, 219);
+            panelArtists.Name = "panelArtists";
+            panelArtists.Size = new Size(200, 100);
+            panelArtists.TabIndex = 2;
+            panelArtists.Visible = false;
+            // 
             // panelAbout
             // 
             panelAbout.Location = new Point(15, 116);
@@ -356,24 +362,24 @@
             actionButtonLibrary.Text = "Библиотека";
             actionButtonLibrary.UseTransparentBackground = true;
             // 
-            // panelArtists
-            // 
-            panelArtists.Location = new Point(15, 219);
-            panelArtists.Name = "panelArtists";
-            panelArtists.Size = new Size(200, 100);
-            panelArtists.TabIndex = 2;
-            panelArtists.Visible = false;
-            // 
             // panelAlbums
             // 
             panelAlbums.Controls.Add(label5);
-            panelAlbums.Controls.Add(albumEntry2);
-            panelAlbums.Controls.Add(albumEntry1);
             panelAlbums.Location = new Point(3, 3);
             panelAlbums.Name = "panelAlbums";
-            panelAlbums.Size = new Size(521, 260);
+            panelAlbums.Size = new Size(626, 319);
             panelAlbums.TabIndex = 1;
             panelAlbums.Visible = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = SystemColors.Control;
+            label5.Location = new Point(14, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(71, 16);
+            label5.TabIndex = 9;
+            label5.Text = "Альбомы:";
             // 
             // panelLibrary
             // 
@@ -386,7 +392,7 @@
             panelLibrary.Controls.Add(label1);
             panelLibrary.Location = new Point(3, 3);
             panelLibrary.Name = "panelLibrary";
-            panelLibrary.Size = new Size(623, 306);
+            panelLibrary.Size = new Size(623, 316);
             panelLibrary.TabIndex = 0;
             // 
             // labelTitle
@@ -454,32 +460,6 @@
             player1.Size = new Size(908, 64);
             player1.TabIndex = 7;
             // 
-            // albumEntry1
-            // 
-            albumEntry1.BackColor = Color.Transparent;
-            albumEntry1.Location = new Point(7, 32);
-            albumEntry1.Name = "albumEntry1";
-            albumEntry1.Size = new Size(171, 199);
-            albumEntry1.TabIndex = 0;
-            // 
-            // albumEntry2
-            // 
-            albumEntry2.BackColor = Color.Transparent;
-            albumEntry2.Location = new Point(186, 32);
-            albumEntry2.Name = "albumEntry2";
-            albumEntry2.Size = new Size(171, 199);
-            albumEntry2.TabIndex = 1;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.ForeColor = SystemColors.Control;
-            label5.Location = new Point(14, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(71, 16);
-            label5.TabIndex = 9;
-            label5.Text = "Альбомы:";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -541,7 +521,5 @@
         private Label label3;
         private Label labelTitle;
         private Label label5;
-        private UserControls.AlbumEntry albumEntry2;
-        private UserControls.AlbumEntry albumEntry1;
     }
 }
