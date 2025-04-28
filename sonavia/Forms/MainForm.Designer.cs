@@ -52,17 +52,17 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerыSupportive = new SplitContainer();
-            actionButtonAbout = new sonavia.UserControls.ActionButton();
-            actionButtonQueue = new sonavia.UserControls.ActionButton();
+            actionButtonAbout = new UserControls.ActionButton();
+            actionButtonQueue = new UserControls.ActionButton();
             panelArtists = new Panel();
             panelAbout = new Panel();
             panelQueue = new Panel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2PanelMain = new Guna.UI2.WinForms.Guna2Panel();
             splitContainerMain = new SplitContainer();
-            actionButtonArtists = new sonavia.UserControls.ActionButton();
-            actionButtonAlbums = new sonavia.UserControls.ActionButton();
-            actionButtonLibrary = new sonavia.UserControls.ActionButton();
+            actionButtonArtists = new UserControls.ActionButton();
+            actionButtonAlbums = new UserControls.ActionButton();
+            actionButtonLibrary = new UserControls.ActionButton();
             panelAlbums = new Panel();
             label5 = new Label();
             panelLibrary = new Panel();
@@ -72,7 +72,8 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            player1 = new sonavia.UserControls.Player();
+            player1 = new UserControls.Player();
+            label6 = new Label();
             tableLayoutPanel1.SuspendLayout();
             PanelTop.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -81,6 +82,7 @@
             splitContainerыSupportive.Panel1.SuspendLayout();
             splitContainerыSupportive.Panel2.SuspendLayout();
             splitContainerыSupportive.SuspendLayout();
+            panelArtists.SuspendLayout();
             guna2PanelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainerMain).BeginInit();
             splitContainerMain.Panel1.SuspendLayout();
@@ -184,7 +186,6 @@
             // 
             // splitContainerыSupportive.Panel2
             // 
-            splitContainerыSupportive.Panel2.Controls.Add(panelArtists);
             splitContainerыSupportive.Panel2.Controls.Add(panelAbout);
             splitContainerыSupportive.Panel2.Controls.Add(panelQueue);
             splitContainerыSupportive.Size = new Size(222, 381);
@@ -233,9 +234,10 @@
             // 
             // panelArtists
             // 
-            panelArtists.Location = new Point(15, 219);
+            panelArtists.Controls.Add(label6);
+            panelArtists.Location = new Point(0, 3);
             panelArtists.Name = "panelArtists";
-            panelArtists.Size = new Size(200, 100);
+            panelArtists.Size = new Size(629, 322);
             panelArtists.TabIndex = 2;
             panelArtists.Visible = false;
             // 
@@ -296,6 +298,7 @@
             // 
             // splitContainerMain.Panel2
             // 
+            splitContainerMain.Panel2.Controls.Add(panelArtists);
             splitContainerMain.Panel2.Controls.Add(panelAlbums);
             splitContainerMain.Panel2.Controls.Add(panelLibrary);
             splitContainerMain.Size = new Size(629, 381);
@@ -365,9 +368,9 @@
             // panelAlbums
             // 
             panelAlbums.Controls.Add(label5);
-            panelAlbums.Location = new Point(3, 3);
+            panelAlbums.Location = new Point(0, 6);
             panelAlbums.Name = "panelAlbums";
-            panelAlbums.Size = new Size(626, 319);
+            panelAlbums.Size = new Size(629, 316);
             panelAlbums.TabIndex = 1;
             panelAlbums.Visible = false;
             // 
@@ -390,9 +393,9 @@
             panelLibrary.Controls.Add(label3);
             panelLibrary.Controls.Add(label2);
             panelLibrary.Controls.Add(label1);
-            panelLibrary.Location = new Point(3, 3);
+            panelLibrary.Location = new Point(0, 3);
             panelLibrary.Name = "panelLibrary";
-            panelLibrary.Size = new Size(623, 316);
+            panelLibrary.Size = new Size(626, 316);
             panelLibrary.TabIndex = 0;
             // 
             // labelTitle
@@ -460,6 +463,16 @@
             player1.Size = new Size(908, 64);
             player1.TabIndex = 7;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = SystemColors.Control;
+            label6.Location = new Point(14, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(103, 16);
+            label6.TabIndex = 10;
+            label6.Text = "Исполнители:";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -480,6 +493,8 @@
             splitContainerыSupportive.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainerыSupportive).EndInit();
             splitContainerыSupportive.ResumeLayout(false);
+            panelArtists.ResumeLayout(false);
+            panelArtists.PerformLayout();
             guna2PanelMain.ResumeLayout(false);
             splitContainerMain.Panel1.ResumeLayout(false);
             splitContainerMain.Panel2.ResumeLayout(false);
@@ -521,5 +536,6 @@
         private Label label3;
         private Label labelTitle;
         private Label label5;
+        private Label label6;
     }
 }

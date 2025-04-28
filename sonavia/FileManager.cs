@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using sonavia.Forms;
+﻿using sonavia.Forms;
 
 namespace sonavia
 {
@@ -19,9 +18,16 @@ namespace sonavia
             return Directory.GetFiles(File.ReadAllLines(configurationPath).First(), "*.mp3");
         }
 
-        public static TagLib.Tag GetTrackMetaData(string path)
+        public static TagLib.Tag? GetTrackMetaData(string path)
         {
-            return TagLib.File.Create(path).Tag;
+            try
+            {
+                return TagLib.File.Create(path).Tag;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>

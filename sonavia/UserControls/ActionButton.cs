@@ -1,12 +1,4 @@
 ﻿using Guna.UI2.WinForms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace sonavia.UserControls
 {
@@ -25,9 +17,9 @@ namespace sonavia.UserControls
             this.panelCollection = panelCollection;
         }
 
-        private void HandleActionButtonClick(object sender, EventArgs e)
+        private void HandleActionButtonClick(object? sender, EventArgs e)
         {
-            ActionButton clickedButton = (ActionButton)sender;
+            ActionButton clickedButton = (ActionButton)sender!;
 
             SetActionButtonColors(clickedButton);
             SetActivePanel(clickedButton);

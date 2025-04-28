@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using sonavia.Models;
+﻿using sonavia.Models;
 
 namespace sonavia.UserControls
 {
@@ -18,16 +9,21 @@ namespace sonavia.UserControls
         public TrackEntry(Track track)
         {
             InitializeComponent();
-            this.track = track; 
+            this.track = track;
             SetLabels();
         }
 
         private void SetLabels()
         {
             labelName.Text = track.name;
-            labelArtist.Text = track.artist.name;
-            labelAlbum.Text = track.album.name;
+            labelArtist.Text = track.artist?.name;
+            labelAlbum.Text = track.album?.name;
             labelDuration.Text = track.durationInSeconds;
+        }
+
+        private void PlayButton_Click(object sender, EventArgs e)
+        {
+            track.Play();
         }
     }
 }

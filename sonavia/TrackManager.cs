@@ -12,36 +12,37 @@ namespace sonavia
         public static void GetMusicData()
         {
             trackPaths = FileManager.GetAllTracks();
-            LoadData(trackPaths, tracks, albums, artists);
+            LoadData(trackPaths);
         }
 
-        private static void LoadData(string[] trackPaths, List<Track> tracks, List<Album> albums, List<Artist> artists)
+        private static void LoadData(string[] trackPaths)
         {
             GetAlbumsAndArtistsNames(trackPaths);
 
             foreach (var file in trackPaths)
             {
                 var trackMetadata = FileManager.GetTrackMetaData(file);
-                var metadataAlbum = trackMetadata.Album ??= "Неизвестен";
-                var metadataArtist = Utils.ConvertStringArrayToOneString(trackMetadata.Performers) ?? "Неизвестен";
+                var metadataAlbum = trackMetadata?.Album ?? "Неизвестен";
+                var metadataArtist = string.Join(", ", trackMetadata?.Performers ?? ["Неизвестен"]);
+                var metadataTitle = trackMetadata?.Title ?? "Поврежден";
 
-                var track = new Track(trackMetadata.Title);
+                if (metadataArtist == "") metadataArtist = "Неизвестен";
+
+                var track = new Track(metadataTitle, file);
                 var album = albums.Find(name => metadataAlbum.Equals(name.name));
                 var artist = artists.Find(name => metadataArtist.Equals(name.name));
 
                 track.album = album;
                 track.artist = artist;
-                track.durationInSeconds = trackMetadata.Length;
+                track.durationInSeconds = trackMetadata?.Length ?? "-";
 
-                album.tracks.Add(track);
+                album!.tracks.Add(track);
                 album.artist = artist;
 
-                artist.albums.Add(album);
+                artist!.albums.Add(album);
                 artist.tracks.Add(track);
 
                 tracks.Add(track);
-                albums.Add(album);
-                artists.Add(artist);
             }
         }
 
@@ -52,7 +53,7 @@ namespace sonavia
 
             foreach (var file in paths)
             {
-                var albumName = FileManager.GetTrackMetaData(file).Album;
+                var albumName = FileManager.GetTrackMetaData(file)?.Album;
 
                 albumName ??= "Неизвестен";
                 if (albumNames.Contains(albumName)) continue;
@@ -62,11 +63,10 @@ namespace sonavia
 
             foreach (var file in paths)
             {
-                var artistName = Utils.ConvertStringArrayToOneString(FileManager.GetTrackMetaData(file).Performers);
+                var artistName = string.Join(", ", FileManager.GetTrackMetaData(file)?.Performers ?? ["Неизвестен"]);
 
-                artistName ??= "Неизвестен";
+                if (artistName == "") artistName = "Неизвестен";                
                 if (artistNames.Contains(artistName)) continue;
-
 
                 artistNames.Add(artistName);
             }

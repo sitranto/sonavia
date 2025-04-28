@@ -9,21 +9,5 @@
             public static System.Drawing.Color darkGray = ColorTranslator.FromHtml("#272424");
             public static System.Drawing.Color fullBlack = ColorTranslator.FromHtml("#161616");
         }
-
-        public static string ConvertStringArrayToOneString(string[] array)
-        {
-            string oneString = "";
-
-            foreach (string entry in array)
-            {
-                oneString += entry;
-                if (entry != array.Last())
-                {
-                    oneString += ", ";
-                }
-            }
-
-            return oneString;
-        }
     }
 }

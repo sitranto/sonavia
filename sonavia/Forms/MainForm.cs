@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Guna.UI2.WinForms;
-using sonavia.UserControls;
-using sonavia;
-using sonavia.Models;
+﻿using sonavia.UserControls;
 
 namespace sonavia.Forms
 {
@@ -96,11 +84,22 @@ namespace sonavia.Forms
 
             foreach (var album in TrackManager.albums)
             {
-                var albumEntry = new AlbumEntry(album.name, album.artist.name);
-                albumEntry.Location = new Point(y, 5);
+                var albumEntry = new AlbumEntry(album.name, album.artist!.name);
+                albumEntry.Location = new Point(y, 15);
                 y += albumEntry.Width;
 
                 panelAlbums.Controls.Add(albumEntry);
+            }
+
+            y = 5;
+
+            foreach(var artist in TrackManager.artists)
+            {
+                var artistEntry = new ArtistEntry(artist.name);
+                artistEntry.Location = new Point(y, 15);
+                y += artistEntry.Width;
+
+                panelArtists.Controls.Add(artistEntry);
             }
         }
 
