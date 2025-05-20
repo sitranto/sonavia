@@ -63,9 +63,9 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon__player_button_main_gray {
+        internal static System.Drawing.Bitmap AlbumThumbnail {
             get {
-                object obj = ResourceManager.GetObject("icon _player_button_main_gray", resourceCulture);
+                object obj = ResourceManager.GetObject("AlbumThumbnail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_player_button_back_gray {
+        internal static System.Drawing.Bitmap BackButtonGray {
             get {
-                object obj = ResourceManager.GetObject("icon_player_button_back_gray", resourceCulture);
+                object obj = ResourceManager.GetObject("BackButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_player_button_forward_gray {
+        internal static System.Drawing.Bitmap BackButtonOrange {
             get {
-                object obj = ResourceManager.GetObject("icon_player_button_forward_gray", resourceCulture);
+                object obj = ResourceManager.GetObject("BackButtonOrange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_player_button_main_orange {
+        internal static System.Drawing.Bitmap ForwardButtonGray {
             get {
-                object obj = ResourceManager.GetObject("icon_player_button_main_orange", resourceCulture);
+                object obj = ResourceManager.GetObject("ForwardButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_player_button_repeat_gray {
+        internal static System.Drawing.Bitmap ForwardButtonOrange {
             get {
-                object obj = ResourceManager.GetObject("icon_player_button_repeat_gray", resourceCulture);
+                object obj = ResourceManager.GetObject("ForwardButtonOrange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_player_button_shuffle_gray {
+        internal static System.Drawing.Bitmap PauseButtonGray {
             get {
-                object obj = ResourceManager.GetObject("icon_player_button_shuffle_gray", resourceCulture);
+                object obj = ResourceManager.GetObject("PauseButtonGray", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,49 @@ namespace sonavia.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap music_thumbnail {
+        internal static System.Drawing.Bitmap PlayButtonOrange {
             get {
-                object obj = ResourceManager.GetObject("music_thumbnail", resourceCulture);
+                object obj = ResourceManager.GetObject("PlayButtonOrange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RepeatButtonGray {
+            get {
+                object obj = ResourceManager.GetObject("RepeatButtonGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RepeatButtonOrange {
+            get {
+                object obj = ResourceManager.GetObject("RepeatButtonOrange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShuffleButtonGray {
+            get {
+                object obj = ResourceManager.GetObject("ShuffleButtonGray", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShuffleButtonOrange {
+            get {
+                object obj = ResourceManager.GetObject("ShuffleButtonOrange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

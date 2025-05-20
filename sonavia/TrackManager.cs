@@ -1,85 +1,131 @@
-﻿using sonavia.Models;
+﻿using NAudio.Wave;
+using NAudio.CoreAudioApi;
+using sonavia.UserControls;
 
 namespace sonavia
 {
     public static class TrackManager
     {
-        private static string[]? trackPaths;
-        public static readonly List<Track> tracks = [];
-        public static readonly List<Album> albums = [];
-        public static readonly List<Artist> artists = [];
+        public static List<string> playlist = [];
+        public static int currentTrackIndex = 0;
 
-        public static void GetMusicData()
+        public static IWavePlayer wavePlayer = new WaveOutEvent();
+        public static AudioFileReader? audioFileReader;
+        public static WaveChannel32? volumeStream;
+        public static MMDevice? defaultPlaybackDevice;
+
+        public static string? currentArtist;
+        public static string? currentTitle;
+        public static Image? currentPicture;
+        public static TimeSpan currentTotalDuration;
+        public static int currentTotalSeconds;
+
+        public static bool isLooping = false;
+        public static bool isShuffle = false;
+
+        public static System.Windows.Forms.Timer timer;
+        public static CustomTrackBar trackBar;
+
+        public static void PlayCurrentTrack()
         {
-            trackPaths = FileManager.GetAllTracks();
-            LoadData(trackPaths);
+            if (playlist != null && playlist.Count > 0 && currentTrackIndex < playlist.Count)
+            {
+                if (audioFileReader != null)
+                {
+                    wavePlayer.Stop();
+                    wavePlayer.Dispose();
+                    audioFileReader.Dispose();
+                    StopTimer();
+                }
+                audioFileReader = new AudioFileReader(playlist[currentTrackIndex]);
+                volumeStream = new WaveChannel32(audioFileReader);
+                wavePlayer = new WaveOut();
+                wavePlayer.Init(audioFileReader);
+
+                CheckForLoopShuffle();
+                wavePlayer.Play();
+
+                MMDeviceEnumerator enumerator = new();
+                defaultPlaybackDevice = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
+                currentTotalSeconds = (int)audioFileReader.TotalTime.TotalSeconds;
+                trackBar.Maximum = currentTotalSeconds;
+                currentTotalDuration = audioFileReader.TotalTime;
+
+                StartTimer();
+            }
         }
 
-        private static void LoadData(string[] trackPaths)
+        public static void FetchTrackMetadata()
         {
-            GetAlbumsAndArtistsNames(trackPaths);
+            TagLib.Tag? file;
+            string filePath = playlist[currentTrackIndex];
 
-            foreach (var file in trackPaths)
+            try
             {
-                var trackMetadata = FileManager.GetTrackMetaData(file);
-                var metadataAlbum = trackMetadata?.Album ?? "Неизвестен";
-                var metadataArtist = string.Join(", ", trackMetadata?.Performers ?? ["Неизвестен"]);
-                var metadataTitle = trackMetadata?.Title ?? "Поврежден";
+                file = TagLib.File.Create(filePath).Tag;
+            }
+            catch (Exception ex)
+            {
+                file = null;
+                MessageBox.Show($"Error extracting metadata for artist name: {ex.Message}");
+            }
 
-                if (metadataArtist == "") metadataArtist = "Неизвестен";
+            currentArtist = string.IsNullOrEmpty(file?.FirstPerformer) ? "Unknown" : file.FirstPerformer;
+            currentTitle = string.IsNullOrEmpty(file?.Title) ? Path.GetFileNameWithoutExtension(filePath) : file.Title;
+            currentPicture = file?.Pictures.Length > 0 ? Image.FromStream(new MemoryStream(file.Pictures[0].Data.Data)) : Properties.Resources.AlbumThumbnail;
+        }
 
-                var track = new Track(metadataTitle, file);
-                var album = albums.Find(name => metadataAlbum.Equals(name.name));
-                var artist = artists.Find(name => metadataArtist.Equals(name.name));
-
-                track.album = album;
-                track.artist = artist;
-                track.durationInSeconds = trackMetadata?.Length ?? "-";
-
-                album!.tracks.Add(track);
-                album.artist = artist;
-
-                artist!.albums.Add(album);
-                artist.tracks.Add(track);
-
-                tracks.Add(track);
+        public static void CheckForLoopShuffle()
+        {
+            if (isLooping)
+            {
+                wavePlayer.PlaybackStopped += LoopCurrentTrack;
+                FetchTrackMetadata();
+            }
+            else if (isShuffle && playlist.Count > 1)
+            {
+                wavePlayer.PlaybackStopped += ShuffleNextTrack;
+                FetchTrackMetadata();
             }
         }
 
-        private static void GetAlbumsAndArtistsNames(string[] paths)
+        private static void ShuffleNextTrack(object? sender, StoppedEventArgs e)
         {
-            var albumNames = new List<string>();
-            var artistNames = new List<string>();
-
-            foreach (var file in paths)
+            if (isShuffle)
             {
-                var albumName = FileManager.GetTrackMetaData(file)?.Album;
+                int nextIndex;
+                do
+                {
+                    nextIndex = new Random().Next(0, playlist.Count);
+                } while (nextIndex == currentTrackIndex);
 
-                albumName ??= "Неизвестен";
-                if (albumNames.Contains(albumName)) continue;
-
-                albumNames.Add(albumName);
+                currentTrackIndex = nextIndex;
+            }
+            else
+            {
+                currentTrackIndex = (currentTrackIndex + 1) % playlist.Count;
             }
 
-            foreach (var file in paths)
+            PlayCurrentTrack();
+        }
+
+        private static void LoopCurrentTrack(object? sender, StoppedEventArgs e)
+        {
+            if (isLooping)
             {
-                var artistName = string.Join(", ", FileManager.GetTrackMetaData(file)?.Performers ?? ["Неизвестен"]);
-
-                if (artistName == "") artistName = "Неизвестен";                
-                if (artistNames.Contains(artistName)) continue;
-
-                artistNames.Add(artistName);
+                PlayCurrentTrack();
             }
+        }
 
-            foreach (var artist in artistNames)
-            {
-                artists.Add(new Artist(artist));
-            }
+        private static void StartTimer()
+        {
+            timer.Enabled = true;
+            timer.Start();
+        }
 
-            foreach (var album in albumNames)
-            {
-                albums.Add(new Album(album));
-            }
+        private static void StopTimer()
+        {
+            timer.Stop();
         }
     }
 }

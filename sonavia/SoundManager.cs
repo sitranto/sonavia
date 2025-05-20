@@ -4,36 +4,39 @@ namespace sonavia
 {
     public static class SoundManager
     {
-        private static WaveOutEvent? outputDevice;
-        private static AudioFileReader? audioFile;
+        private static readonly WaveOutEvent outputDevice = new();
+        private static AudioFileReader? currentAudioFile;
 
         public static void Play(string trackPath)
-        {
-            if (outputDevice == null)
+        {   
+            if (currentAudioFile == null)
             {
-                outputDevice = new();
-                outputDevice.PlaybackStopped += PlaybackStopped;
+                currentAudioFile = new(@trackPath);
+                outputDevice.Init(currentAudioFile);
+            }
+            else
+            {
+                if (currentAudioFile.FileName != trackPath)
+                {
+                    Stop();
+                    currentAudioFile = new(trackPath);
+                    outputDevice.Init(currentAudioFile);
+                }
             }
 
-            if (audioFile == null)
-            {
-                audioFile = new(@trackPath);
-                outputDevice.Init(audioFile);
-            }
             outputDevice.Play();
         }
 
-        private static void Stop()
+        public static void Pause()
         {
-            outputDevice?.Stop();
+            outputDevice?.Pause();
         }
 
-        private static void PlaybackStopped(object? sender, StoppedEventArgs args)
+        public static void Stop()
         {
-            outputDevice?.Dispose();
-            outputDevice = null;
-            audioFile?.Dispose();
-            audioFile = null;
+            outputDevice.Stop();
+            currentAudioFile?.Dispose();
+            currentAudioFile = null;
         }
     }
 }

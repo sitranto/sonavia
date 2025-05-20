@@ -118,25 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon_player_button_back_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="AlbumThumbnail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\music_thumbnail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BackButtonGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_player_button_back_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_player_button_repeat_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_player_button_repeat_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_player_button_main_orange" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_player_button_main_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icon_player_button_forward_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ForwardButtonGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_player_button_forward_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_player_button_shuffle_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="PauseButtonGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_pause_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PlayButtonOrange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_main_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RepeatButtonGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_repeat_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShuffleButtonGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_player_button_shuffle_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon _player_button_main_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon _player_button_main_gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RepeatButtonOrange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_repeat_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="music_thumbnail" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\music_thumbnail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ShuffleButtonOrange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_shuffle_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ForwardButtonOrange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_forward_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BackButtonOrange" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_player_button_back_orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

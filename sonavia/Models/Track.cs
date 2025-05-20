@@ -14,5 +14,15 @@ namespace sonavia.Models
         {
             SoundManager.Play(trackPath);
         }
+
+        public void Pause()
+        {
+            SoundManager.Pause();
+        }
+
+        public void Stop()
+        {
+            SoundManager.Stop();
+        }
     }
 }
