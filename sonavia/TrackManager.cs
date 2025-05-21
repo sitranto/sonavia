@@ -1,12 +1,14 @@
 ﻿using NAudio.Wave;
 using NAudio.CoreAudioApi;
 using sonavia.UserControls;
+using System.Runtime.CompilerServices;
 
 namespace sonavia
 {
     public static class TrackManager
     {
-        public static List<string> playlist = [];
+        public static List<string> playlist = FileManager.GetAllTracks();
+        public static List<string> queue = [];
         public static int currentTrackIndex = 0;
 
         public static IWavePlayer wavePlayer = new WaveOutEvent();
@@ -20,16 +22,20 @@ namespace sonavia
         public static TimeSpan currentTotalDuration;
         public static int currentTotalSeconds;
 
+        public static bool isPlaying = false;
         public static bool isLooping = false;
         public static bool isShuffle = false;
 
         public static System.Windows.Forms.Timer timer;
         public static CustomTrackBar trackBar;
 
+        public static event EventHandler TrackPlayed;
+
         public static void PlayCurrentTrack()
         {
             if (playlist != null && playlist.Count > 0 && currentTrackIndex < playlist.Count)
             {
+
                 if (audioFileReader != null)
                 {
                     wavePlayer.Stop();
@@ -37,13 +43,17 @@ namespace sonavia
                     audioFileReader.Dispose();
                     StopTimer();
                 }
+
                 audioFileReader = new AudioFileReader(playlist[currentTrackIndex]);
                 volumeStream = new WaveChannel32(audioFileReader);
                 wavePlayer = new WaveOut();
                 wavePlayer.Init(audioFileReader);
 
+                FetchTrackMetadata();
                 CheckForLoopShuffle();
                 wavePlayer.Play();
+                isPlaying = true;
+                TrackPlayed.Invoke(null, EventArgs.Empty);
 
                 MMDeviceEnumerator enumerator = new();
                 defaultPlaybackDevice = enumerator.GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
@@ -54,7 +64,7 @@ namespace sonavia
                 StartTimer();
             }
         }
-
+       
         public static void FetchTrackMetadata()
         {
             TagLib.Tag? file;
@@ -64,10 +74,9 @@ namespace sonavia
             {
                 file = TagLib.File.Create(filePath).Tag;
             }
-            catch (Exception ex)
+            catch
             {
                 file = null;
-                MessageBox.Show($"Error extracting metadata for artist name: {ex.Message}");
             }
 
             currentArtist = string.IsNullOrEmpty(file?.FirstPerformer) ? "Unknown" : file.FirstPerformer;
@@ -75,17 +84,37 @@ namespace sonavia
             currentPicture = file?.Pictures.Length > 0 ? Image.FromStream(new MemoryStream(file.Pictures[0].Data.Data)) : Properties.Resources.AlbumThumbnail;
         }
 
+        public static void FetchTrackMetadata(int index)
+        {
+            TagLib.Tag? file;
+            string filePath = playlist[index];
+
+            try
+            {
+                file = TagLib.File.Create(filePath).Tag;
+            }
+            catch
+            {
+                file = null;
+            }
+
+            audioFileReader = new AudioFileReader(playlist[index]);
+
+            currentArtist = string.IsNullOrEmpty(file?.FirstPerformer) ? "Unknown" : file.FirstPerformer;
+            currentTitle = string.IsNullOrEmpty(file?.Title) ? Path.GetFileNameWithoutExtension(filePath) : file.Title;
+            currentPicture = file?.Pictures.Length > 0 ? Image.FromStream(new MemoryStream(file.Pictures[0].Data.Data)) : Properties.Resources.AlbumThumbnail;
+            currentTotalDuration = audioFileReader.TotalTime;
+        }
+
         public static void CheckForLoopShuffle()
         {
             if (isLooping)
             {
                 wavePlayer.PlaybackStopped += LoopCurrentTrack;
-                FetchTrackMetadata();
             }
             else if (isShuffle && playlist.Count > 1)
             {
                 wavePlayer.PlaybackStopped += ShuffleNextTrack;
-                FetchTrackMetadata();
             }
         }
 

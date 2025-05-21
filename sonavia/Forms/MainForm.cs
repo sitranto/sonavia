@@ -1,5 +1,6 @@
 ﻿using NAudio.CoreAudioApi;
 using NAudio.Wave;
+using sonavia.UserControls;
 
 namespace sonavia.Forms
 {
@@ -7,7 +8,6 @@ namespace sonavia.Forms
     {
         private static bool _isPanelTopMouseClicked = false;
         private static Point _formLocation;
-        private static bool _isPlaying = false;
         private const double _endAudioThreshold = 200;
         private bool _isSeeking = false;
 
@@ -18,6 +18,9 @@ namespace sonavia.Forms
             FetchSystemVolumeLevel();
             TrackManager.timer = TrackBarTimer;
             TrackManager.trackBar = TrackBar;
+            TrackManager.TrackPlayed += (sender, e) => UpdateLabels();
+            SetTrackFields();
+            UpdateLabels();
         }
 
         private void FetchSystemVolumeLevel()
@@ -55,7 +58,7 @@ namespace sonavia.Forms
 
         private void ButtonPlay_Click(object sender, EventArgs e)
         {
-            if (_isPlaying)
+            if (!TrackManager.isPlaying)
             {
                 if (TrackManager.wavePlayer.PlaybackState == PlaybackState.Stopped)
                 {
@@ -64,6 +67,7 @@ namespace sonavia.Forms
                 else
                 {
                     TrackManager.wavePlayer.Play();
+                    TrackManager.isPlaying = true;
                 }
                 ButtonPlay.Image = Properties.Resources.PauseButtonGray;
             }
@@ -71,35 +75,7 @@ namespace sonavia.Forms
             {
                 TrackManager.wavePlayer.Pause();
                 ButtonPlay.Image = Properties.Resources.PlayButtonOrange;
-            }
-            _isPlaying = !_isPlaying;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new()
-                {
-                    Filter = "Audio Files|*.wav;*.mp3;*.ogg;*.flac;*.aac|All Files|*.*"
-                };
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-
-                    foreach (var filePath in openFileDialog.FileNames)
-                    {
-                        if (!TrackManager.playlist.Contains(filePath))
-                        {
-                            TrackManager.playlist.Add(filePath);
-                        }
-                    }
-                    UpdateLabels();
-                }
-            }
-            catch
-            {
-                MessageBox.Show($"Error Occur opening new file");
+                TrackManager.isPlaying = false;
             }
         }
 
@@ -110,6 +86,14 @@ namespace sonavia.Forms
             ArtistNameLabel.Text = TrackManager.currentArtist;
             AlbumPictureBox.Image = TrackManager.currentPicture;
             DurationLabel.Text = $"{TrackManager.currentTotalDuration.Hours:D2}:{TrackManager.currentTotalDuration.Minutes:D2}:{TrackManager.currentTotalDuration.Seconds:D2}";
+            if (TrackManager.isPlaying)
+            {
+                ButtonPlay.Image = Properties.Resources.PauseButtonGray;
+            }
+            else
+            {
+                ButtonPlay.Image = Properties.Resources.PlayButtonOrange;
+            }
         }
 
         private void ButtonBack_Click(object sender, EventArgs e)
@@ -117,7 +101,6 @@ namespace sonavia.Forms
             TrackManager.currentTrackIndex = (TrackManager.currentTrackIndex - 1 + TrackManager.playlist.Count) % TrackManager.playlist.Count;
             if (TrackManager.playlist.Count > 0)
             {
-                TrackManager.FetchTrackMetadata();
                 UpdateLabels();
                 TrackManager.PlayCurrentTrack();
             }
@@ -128,7 +111,6 @@ namespace sonavia.Forms
             TrackManager.currentTrackIndex = (TrackManager.currentTrackIndex + 1) % TrackManager.playlist.Count;
             if (TrackManager.playlist.Count > 0)
             {
-                TrackManager.FetchTrackMetadata();
                 UpdateLabels();
                 TrackManager.PlayCurrentTrack();
             }
@@ -200,8 +182,10 @@ namespace sonavia.Forms
                     }
                     else
                     {
-                        UpdateLabels();
+                        TrackManager.currentTrackIndex = (TrackManager.currentTrackIndex + 1) % TrackManager.playlist.Count;
+                        TrackManager.PlayCurrentTrack();
                     }
+                    UpdateLabels();
                 }
             }
         }
@@ -210,7 +194,11 @@ namespace sonavia.Forms
         {
             if (_isSeeking && TrackManager.wavePlayer.PlaybackState == PlaybackState.Paused)
             {
-                TrackManager.wavePlayer.Play();
+                if (TrackManager.isPlaying)
+                {
+                    TrackManager.wavePlayer.Play();
+                }
+                UpdateLabels();
             }
             _isSeeking = false;
         }
@@ -239,6 +227,44 @@ namespace sonavia.Forms
             {
                 TrackManager.defaultPlaybackDevice.AudioEndpointVolume.MasterVolumeLevelScalar = volume;
             }
+        }
+
+        private void SetTrackFields()
+        {
+            Point position = new(0, 0);
+            foreach (var track in TrackManager.playlist.Select((value, i) => new { i, value }))
+            {
+                TrackManager.FetchTrackMetadata(track.i);
+                TrackField field = new(
+                    TrackManager.currentTitle!,
+                    TrackManager.currentArtist!,
+                    $"{TrackManager.currentTotalDuration.Hours:D2}:{TrackManager.currentTotalDuration.Minutes:D2}:{TrackManager.currentTotalDuration.Seconds:D2}",
+                    track.value
+                    );
+                field.Parent = PanelTrackList;
+                field.Location = position;
+                PanelTrackList.Controls.Add(field);
+                position.Y += field.Height;
+            }
+            if (TrackManager.playlist.Count > 5) 
+            {
+                CustomScrollBarTrackList.Height = PanelTrackList.Height; //todo height
+                CustomScrollBarTrackList.LargeChange = PanelTrackList.Height - (TrackManager.playlist.Count - 5) * 50;
+                PanelTrackList.Height = position.Y;
+            }
+            else
+            {
+                CustomScrollBarTrackList.Visible = false;
+            }
+        }
+
+        private void CustomScrollBarTrackList_Scroll(object sender, int e)
+        {
+            PanelTrackList.Top = -e;
+        }
+
+        private void PanelTrackList_Resize(object sender, EventArgs e)
+        {
         }
     }
 }

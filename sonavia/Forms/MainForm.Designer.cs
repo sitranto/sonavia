@@ -43,17 +43,32 @@ namespace sonavia.Forms
             ButtonNext = new PictureBox();
             ButtonShuffle = new PictureBox();
             ButtonRepeat = new PictureBox();
-            button1 = new Button();
             TrackBarTimer = new System.Windows.Forms.Timer(components);
             TrackBar = new CustomTrackBar();
             VolumeTrackBar = new CustomTrackBar();
-            PanelTrack = new Panel();
+            PanelTrackContainer = new Panel();
+            PanelTrackListWrapper = new Panel();
+            PanelTrackList = new Panel();
+            CustomScrollBarTrackList = new CustomScrollBar();
+            panel2 = new Panel();
+            PanelTrackTop = new Panel();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            panel3 = new Panel();
+            panel4 = new Panel();
+            label4 = new Label();
+            panel5 = new Panel();
             ((System.ComponentModel.ISupportInitialize)AlbumPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonPlay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonNext).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonShuffle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonRepeat).BeginInit();
+            PanelTrackContainer.SuspendLayout();
+            PanelTrackListWrapper.SuspendLayout();
+            PanelTrackTop.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // ButtonClose
@@ -186,17 +201,6 @@ namespace sonavia.Forms
             ButtonRepeat.TabStop = false;
             ButtonRepeat.Click += ButtonRepeat_Click;
             // 
-            // button1
-            // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(687, 38);
-            button1.Name = "button1";
-            button1.Size = new Size(86, 32);
-            button1.TabIndex = 13;
-            button1.Text = "Открыть";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // TrackBarTimer
             // 
             TrackBarTimer.Tick += TrackBarTimer_Tick;
@@ -222,13 +226,129 @@ namespace sonavia.Forms
             VolumeTrackBar.Value = 0;
             VolumeTrackBar.Scroll += VolumeTrackBar_Scroll;
             // 
-            // PanelTrack
+            // PanelTrackContainer
             // 
-            PanelTrack.BackColor = Color.FromArgb(39, 36, 36);
-            PanelTrack.Location = new Point(90, 38);
-            PanelTrack.Name = "PanelTrack";
-            PanelTrack.Size = new Size(529, 294);
-            PanelTrack.TabIndex = 17;
+            PanelTrackContainer.BackColor = Color.FromArgb(39, 36, 36);
+            PanelTrackContainer.Controls.Add(PanelTrackListWrapper);
+            PanelTrackContainer.Controls.Add(panel2);
+            PanelTrackContainer.Controls.Add(PanelTrackTop);
+            PanelTrackContainer.Location = new Point(90, 38);
+            PanelTrackContainer.Name = "PanelTrackContainer";
+            PanelTrackContainer.Size = new Size(529, 294);
+            PanelTrackContainer.TabIndex = 17;
+            // 
+            // PanelTrackListWrapper
+            // 
+            PanelTrackListWrapper.Controls.Add(PanelTrackList);
+            PanelTrackListWrapper.Controls.Add(CustomScrollBarTrackList);
+            PanelTrackListWrapper.Location = new Point(0, 51);
+            PanelTrackListWrapper.Name = "PanelTrackListWrapper";
+            PanelTrackListWrapper.Size = new Size(529, 243);
+            PanelTrackListWrapper.TabIndex = 3;
+            // 
+            // PanelTrackList
+            // 
+            PanelTrackList.Location = new Point(0, 0);
+            PanelTrackList.Name = "PanelTrackList";
+            PanelTrackList.Size = new Size(518, 243);
+            PanelTrackList.TabIndex = 2;
+            PanelTrackList.Resize += PanelTrackList_Resize;
+            // 
+            // CustomScrollBarTrackList
+            // 
+            CustomScrollBarTrackList.BackColor = Color.FromArgb(39, 36, 36);
+            CustomScrollBarTrackList.LargeChange = 294;
+            CustomScrollBarTrackList.Location = new Point(518, -2);
+            CustomScrollBarTrackList.Maximum = 243;
+            CustomScrollBarTrackList.Minimum = 0;
+            CustomScrollBarTrackList.Name = "CustomScrollBarTrackList";
+            CustomScrollBarTrackList.Size = new Size(10, 245);
+            CustomScrollBarTrackList.TabIndex = 0;
+            CustomScrollBarTrackList.Value = 0;
+            CustomScrollBarTrackList.Scroll += CustomScrollBarTrackList_Scroll;
+            // 
+            // panel2
+            // 
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Location = new Point(0, 49);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(529, 1);
+            panel2.TabIndex = 1;
+            // 
+            // PanelTrackTop
+            // 
+            PanelTrackTop.Controls.Add(label3);
+            PanelTrackTop.Controls.Add(label2);
+            PanelTrackTop.Controls.Add(label1);
+            PanelTrackTop.Location = new Point(0, 0);
+            PanelTrackTop.Name = "PanelTrackTop";
+            PanelTrackTop.Size = new Size(529, 50);
+            PanelTrackTop.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(436, 14);
+            label3.Name = "label3";
+            label3.Size = new Size(82, 21);
+            label3.TabIndex = 2;
+            label3.Text = "Duration";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(280, 14);
+            label2.Name = "label2";
+            label2.Size = new Size(64, 21);
+            label2.TabIndex = 1;
+            label2.Text = "Artist";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(38, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(46, 21);
+            label1.TabIndex = 0;
+            label1.Text = "Name";
+            label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(39, 36, 36);
+            panel3.Location = new Point(12, 38);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(70, 294);
+            panel3.TabIndex = 18;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(39, 36, 36);
+            panel4.Controls.Add(label4);
+            panel4.Controls.Add(panel5);
+            panel4.Location = new Point(627, 38);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(161, 294);
+            panel4.TabIndex = 19;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(28, 14);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 21);
+            label4.TabIndex = 3;
+            label4.Text = "Track Info";
+            // 
+            // panel5
+            // 
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Location = new Point(0, 49);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(161, 1);
+            panel5.TabIndex = 2;
             // 
             // MainForm
             // 
@@ -236,10 +356,11 @@ namespace sonavia.Forms
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(22, 22, 22);
             ClientSize = new Size(800, 425);
-            Controls.Add(PanelTrack);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(PanelTrackContainer);
             Controls.Add(VolumeTrackBar);
             Controls.Add(TrackBar);
-            Controls.Add(button1);
             Controls.Add(ButtonRepeat);
             Controls.Add(ButtonShuffle);
             Controls.Add(ButtonNext);
@@ -265,6 +386,12 @@ namespace sonavia.Forms
             ((System.ComponentModel.ISupportInitialize)ButtonNext).EndInit();
             ((System.ComponentModel.ISupportInitialize)ButtonShuffle).EndInit();
             ((System.ComponentModel.ISupportInitialize)ButtonRepeat).EndInit();
+            PanelTrackContainer.ResumeLayout(false);
+            PanelTrackListWrapper.ResumeLayout(false);
+            PanelTrackTop.ResumeLayout(false);
+            PanelTrackTop.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -283,10 +410,21 @@ namespace sonavia.Forms
         private PictureBox ButtonNext;
         private PictureBox ButtonShuffle;
         private PictureBox ButtonRepeat;
-        private Button button1;
         private System.Windows.Forms.Timer TrackBarTimer;
         private CustomTrackBar TrackBar;
         private CustomTrackBar VolumeTrackBar;
-        private Panel PanelTrack;
+        private Panel PanelTrackContainer;
+        private Panel PanelTrackTop;
+        private Label label2;
+        private Label label1;
+        private Label label3;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private Panel panel5;
+        private Label label4;
+        private Panel PanelTrackList;
+        private CustomScrollBar CustomScrollBarTrackList;
+        private Panel PanelTrackListWrapper;
     }
 }

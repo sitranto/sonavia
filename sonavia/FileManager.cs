@@ -20,5 +20,10 @@ namespace sonavia
                 File.WriteAllText(configurationPath, selectLibraryDirectoryForm.selectedPath);
             }
         }
+
+        public static List<string> GetAllTracks()
+        {
+            return [.. Directory.GetFiles(File.ReadAllLines(configurationPath).First(), "*.mp3")];
+        }
     }
 }
