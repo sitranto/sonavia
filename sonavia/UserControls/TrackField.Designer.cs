@@ -32,6 +32,7 @@
             LabelArtistName = new Label();
             LabelDuration = new Label();
             ButtonPlay = new PictureBox();
+            CheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)ButtonPlay).BeginInit();
             SuspendLayout();
             // 
@@ -43,6 +44,8 @@
             LabelTrackName.Size = new Size(236, 21);
             LabelTrackName.TabIndex = 0;
             LabelTrackName.Text = "Track Name";
+            LabelTrackName.MouseEnter += TrackField_MouseEnter;
+            LabelTrackName.MouseLeave += TrackField_MouseLeave;
             // 
             // LabelArtistName
             // 
@@ -52,6 +55,8 @@
             LabelArtistName.Size = new Size(150, 21);
             LabelArtistName.TabIndex = 1;
             LabelArtistName.Text = "Artist Name";
+            LabelArtistName.MouseEnter += TrackField_MouseEnter;
+            LabelArtistName.MouseLeave += TrackField_MouseLeave;
             // 
             // LabelDuration
             // 
@@ -60,6 +65,8 @@
             LabelDuration.Size = new Size(82, 21);
             LabelDuration.TabIndex = 2;
             LabelDuration.Text = "--:--:--";
+            LabelDuration.MouseEnter += TrackField_MouseEnter;
+            LabelDuration.MouseLeave += TrackField_MouseLeave;
             // 
             // ButtonPlay
             // 
@@ -71,12 +78,26 @@
             ButtonPlay.TabIndex = 3;
             ButtonPlay.TabStop = false;
             ButtonPlay.Click += ButtonPlay_Click;
+            ButtonPlay.MouseEnter += TrackField_MouseEnter;
+            ButtonPlay.MouseLeave += TrackField_MouseLeave;
+            // 
+            // CheckBox
+            // 
+            CheckBox.AutoSize = true;
+            CheckBox.Location = new Point(469, 18);
+            CheckBox.Name = "CheckBox";
+            CheckBox.Size = new Size(15, 14);
+            CheckBox.TabIndex = 4;
+            CheckBox.UseVisualStyleBackColor = true;
+            CheckBox.Visible = false;
+            CheckBox.CheckedChanged += CheckBox_CheckedChanged;
             // 
             // TrackField
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(39, 36, 36);
+            Controls.Add(CheckBox);
             Controls.Add(ButtonPlay);
             Controls.Add(LabelDuration);
             Controls.Add(LabelArtistName);
@@ -86,8 +107,11 @@
             Margin = new Padding(4);
             Name = "TrackField";
             Size = new Size(529, 50);
+            MouseEnter += TrackField_MouseEnter;
+            MouseLeave += TrackField_MouseLeave;
             ((System.ComponentModel.ISupportInitialize)ButtonPlay).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -95,6 +119,7 @@
         private Label LabelTrackName;
         private Label LabelArtistName;
         private Label LabelDuration;
-        private PictureBox ButtonPlay;
+        public PictureBox ButtonPlay;
+        public CheckBox CheckBox;
     }
 }

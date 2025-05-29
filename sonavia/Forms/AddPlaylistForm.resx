@@ -117,21 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="TrackBarTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACcAAAAzCAYAAAAU5BG4AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAZNJREFUaEPtmMFtwkAQRSmBEqaElJASUgKdJLeI3UjQQdJBSqAESvDNa+WSEojG
-        QGT971mG2NhE2id9DvB3efaKkfBiMZC0EamjbFKQqg6yT2/yru9hb3JUQqVSkAOkml2wvUssdkyUHfYn
-        pYnyTVKdVBtZ4prJQBnK64xHSzKYImdAMpj/LKc/mBTlWefj6DOSZDAZOfeMPF9BE+RT51MKsvKMgZ6N
-        /XKeGem+gh561rjlXDPSdQUG1Mdk5KiL0bWuKzDALmWoHL2JGfoFBtTFFDkD6mKKnAF1MUXOgLqYImdA
-        XUyRM6AupsgZUBdT5AyoiylyBtTFFDkD6mKKnAF1MXcvd9d/DesgW/rglCbKHjftgn3KUDl9MR5HHL6C
-        POCmXbBPyci5T6wVXMuHLmgXRdldElNwQ0pG7vTAiNccU2H/ano29ctlTqxeyxP2rwY3pWTklPOJ/fb1
-        bkZ5xN6fIBnMBbmbQjKYImdAMpg55dyzag5uPquGoMeWuXsr7E9OO6s6d1BlRxmiY1K9yHLsH8APUmKI
-        fLyNZ4QAAAAASUVORK5CYII=
-</value>
-  </data>
 </root>

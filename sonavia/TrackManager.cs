@@ -16,9 +16,7 @@ namespace sonavia
         public static WaveChannel32? volumeStream;
         public static MMDevice? defaultPlaybackDevice;
 
-        public static string? currentArtist;
-        public static string? currentTitle;
-        public static Image? currentPicture;
+        public static TagLib.Tag? currentMetaData;
         public static TimeSpan currentTotalDuration;
         public static int currentTotalSeconds;
 
@@ -67,42 +65,28 @@ namespace sonavia
        
         public static void FetchTrackMetadata()
         {
-            TagLib.Tag? file;
-            string filePath = playlist[currentTrackIndex];
-
             try
             {
-                file = TagLib.File.Create(filePath).Tag;
+                currentMetaData = TagLib.File.Create(playlist[currentTrackIndex]).Tag;
             }
             catch
             {
-                file = null;
+                currentMetaData = null;
             }
-
-            currentArtist = string.IsNullOrEmpty(file?.FirstPerformer) ? "Unknown" : file.FirstPerformer;
-            currentTitle = string.IsNullOrEmpty(file?.Title) ? Path.GetFileNameWithoutExtension(filePath) : file.Title;
-            currentPicture = file?.Pictures.Length > 0 ? Image.FromStream(new MemoryStream(file.Pictures[0].Data.Data)) : Properties.Resources.AlbumThumbnail;
         }
 
         public static void FetchTrackMetadata(int index)
         {
-            TagLib.Tag? file;
-            string filePath = playlist[index];
-
             try
             {
-                file = TagLib.File.Create(filePath).Tag;
+                currentMetaData = TagLib.File.Create(playlist[index]).Tag;
             }
             catch
             {
-                file = null;
+                currentMetaData = null;
             }
 
             audioFileReader = new AudioFileReader(playlist[index]);
-
-            currentArtist = string.IsNullOrEmpty(file?.FirstPerformer) ? "Unknown" : file.FirstPerformer;
-            currentTitle = string.IsNullOrEmpty(file?.Title) ? Path.GetFileNameWithoutExtension(filePath) : file.Title;
-            currentPicture = file?.Pictures.Length > 0 ? Image.FromStream(new MemoryStream(file.Pictures[0].Data.Data)) : Properties.Resources.AlbumThumbnail;
             currentTotalDuration = audioFileReader.TotalTime;
         }
 
@@ -115,6 +99,23 @@ namespace sonavia
             else if (isShuffle && playlist.Count > 1)
             {
                 wavePlayer.PlaybackStopped += ShuffleNextTrack;
+            }
+        }
+        
+        public static void Next()
+        {
+            if (isLooping)
+            {
+                LoopCurrentTrack(null, null);
+            }
+            else if (isShuffle && playlist.Count > 1)
+            {
+                ShuffleNextTrack(null, null);
+            }
+            else
+            {
+                currentTrackIndex = (currentTrackIndex + 1) % playlist.Count;
+                PlayCurrentTrack();
             }
         }
 
@@ -155,6 +156,47 @@ namespace sonavia
         private static void StopTimer()
         {
             timer.Stop();
+        }
+
+        public static string GetCurrentTitle(int index)
+        {
+            return string.IsNullOrEmpty(currentMetaData?.Title) ? Path.GetFileNameWithoutExtension(playlist[index]) : currentMetaData.Title;
+        }
+
+        public static string GetCurrentArtist()
+        {
+            return string.IsNullOrEmpty(currentMetaData?.FirstPerformer) ? "Unknown" : currentMetaData.FirstPerformer;
+        }
+
+        public static Image GetCurrentAlbumCover()
+        {
+            try
+            {
+                if (currentMetaData?.Pictures.Length > 0)
+                {
+                    return Image.FromStream(new MemoryStream(currentMetaData.Pictures[0].Data.Data));
+                }
+            }
+            catch 
+            {
+                Console.WriteLine("Error");
+            }
+            return Properties.Resources.AlbumThumbnail;
+        }
+
+        public static string GetCurrentAlbumName()
+        {
+            return string.IsNullOrEmpty(currentMetaData?.Album) ? "Unknown" : currentMetaData.Album;
+        }
+
+        public static string GetCurrentGenre()
+        {
+            return string.IsNullOrEmpty(currentMetaData?.Genres.FirstOrDefault()) ? "Unknown" : currentMetaData.Genres.First();
+        }
+
+        public static string GetCurrentYear()
+        {
+            return string.IsNullOrEmpty(currentMetaData?.Year.ToString()) ? "Unknown" : currentMetaData.Year.ToString(); 
         }
     }
 }

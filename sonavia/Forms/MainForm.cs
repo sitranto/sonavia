@@ -19,6 +19,7 @@ namespace sonavia.Forms
             TrackManager.timer = TrackBarTimer;
             TrackManager.trackBar = TrackBar;
             TrackManager.TrackPlayed += (sender, e) => UpdateLabels();
+            SetPlaylists();
             SetTrackFields();
             UpdateLabels();
         }
@@ -77,14 +78,39 @@ namespace sonavia.Forms
                 ButtonPlay.Image = Properties.Resources.PlayButtonOrange;
                 TrackManager.isPlaying = false;
             }
+
+            UpdateButtons();
+        }
+
+        private void UpdateButtons()
+        {
+            foreach (TrackField trackField in PanelTrackList.Controls)
+            {
+                if (TrackManager.isPlaying && trackField.path == TrackManager.playlist[TrackManager.currentTrackIndex])
+                {
+                    trackField.ButtonPlay.Image = Properties.Resources.PauseButtonGray;
+                }
+                else
+                {
+                    trackField.ButtonPlay.Image = Properties.Resources.PlayButtonOrange;
+                }
+            }
         }
 
         private void UpdateLabels()
         {
             TrackManager.FetchTrackMetadata();
-            TrackNameLabel.Text = TrackManager.currentTitle;
-            ArtistNameLabel.Text = TrackManager.currentArtist;
-            AlbumPictureBox.Image = TrackManager.currentPicture;
+            TrackNameLabel.Text = TrackManager.GetCurrentTitle(TrackManager.currentTrackIndex);
+            LabelInfoTitle.Text = TrackManager.GetCurrentTitle(TrackManager.currentTrackIndex);
+            ArtistNameLabel.Text = TrackManager.GetCurrentArtist();
+            LabelInfoArtist.Text = TrackManager.GetCurrentArtist();
+            AlbumPictureBox.Image = TrackManager.GetCurrentAlbumCover();
+            LabelInfoGenre.Text = TrackManager.GetCurrentGenre();
+            LabelInfoAlbum.Text = TrackManager.GetCurrentAlbumName();
+            LabelInfoYear.Text = TrackManager.GetCurrentYear();
+
+            UpdateButtons();
+
             DurationLabel.Text = $"{TrackManager.currentTotalDuration.Hours:D2}:{TrackManager.currentTotalDuration.Minutes:D2}:{TrackManager.currentTotalDuration.Seconds:D2}";
             if (TrackManager.isPlaying)
             {
@@ -108,12 +134,8 @@ namespace sonavia.Forms
 
         private void ButtonNext_Click(object sender, EventArgs e)
         {
-            TrackManager.currentTrackIndex = (TrackManager.currentTrackIndex + 1) % TrackManager.playlist.Count;
-            if (TrackManager.playlist.Count > 0)
-            {
-                UpdateLabels();
-                TrackManager.PlayCurrentTrack();
-            }
+            TrackManager.Next();
+            UpdateLabels();
         }
 
         private void ButtonShuffle_Click(object sender, EventArgs e)
@@ -231,24 +253,30 @@ namespace sonavia.Forms
 
         private void SetTrackFields()
         {
+            PanelTrackList.Controls.Clear();
+            PanelTrackList.Height = PanelTrackListWrapper.Height;
+
             Point position = new(0, 0);
             foreach (var track in TrackManager.playlist.Select((value, i) => new { i, value }))
             {
                 TrackManager.FetchTrackMetadata(track.i);
                 TrackField field = new(
-                    TrackManager.currentTitle!,
-                    TrackManager.currentArtist!,
+                    TrackManager.GetCurrentTitle(track.i),
+                    TrackManager.GetCurrentArtist(),
                     $"{TrackManager.currentTotalDuration.Hours:D2}:{TrackManager.currentTotalDuration.Minutes:D2}:{TrackManager.currentTotalDuration.Seconds:D2}",
                     track.value
-                    );
-                field.Parent = PanelTrackList;
-                field.Location = position;
+                    )
+                {
+                    Parent = PanelTrackList,
+                    Location = position
+                };
+                field.PlayClick += ButtonPlay_Click;
                 PanelTrackList.Controls.Add(field);
                 position.Y += field.Height;
             }
-            if (TrackManager.playlist.Count > 5) 
+            if (TrackManager.playlist.Count > 5)
             {
-                CustomScrollBarTrackList.Height = PanelTrackList.Height; //todo height
+                CustomScrollBarTrackList.Height = PanelTrackListWrapper.Height; //todo height
                 CustomScrollBarTrackList.LargeChange = PanelTrackList.Height - (TrackManager.playlist.Count - 5) * 50;
                 PanelTrackList.Height = position.Y;
             }
@@ -256,6 +284,37 @@ namespace sonavia.Forms
             {
                 CustomScrollBarTrackList.Visible = false;
             }
+            PanelTrackList.Refresh();
+        }
+
+        private void SetPlaylists()
+        {
+            var playlists = FileManager.GetAllPlaylists();
+
+            for (int i = 2; i < PanelPlaylists.Controls.Count; i++)
+            {
+                PanelPlaylists.Controls.RemoveAt(i);
+            }
+
+            Point position = new(10, 125);
+
+            foreach (string playlist in playlists)
+            {
+                PictureBox pictureBox = new()
+                {
+                    Location = position,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Height = 50,
+                    Width = 50,
+                    Image = Properties.Resources.AlbumThumbnail,
+                    Name = playlist
+                };
+                pictureBox.Click += Playlist_Click;
+                PanelPlaylists.Controls.Add(pictureBox);
+                position.Y += pictureBox.Height + 6;
+            }
+
+            PanelPlaylists.Refresh();
         }
 
         private void CustomScrollBarTrackList_Scroll(object sender, int e)
@@ -263,8 +322,34 @@ namespace sonavia.Forms
             PanelTrackList.Top = -e;
         }
 
-        private void PanelTrackList_Resize(object sender, EventArgs e)
+        private void ButtonAddPlaylist_Click(object sender, EventArgs e)
         {
+            AddPlaylistForm addPlaylistForm = new();
+            if (addPlaylistForm.ShowDialog() == DialogResult.OK)
+            {
+                SetPlaylists();
+            }
+        }
+
+        private void AllTracks_Click(object sender, EventArgs e)
+        {
+            TrackManager.wavePlayer.Stop();
+            TrackManager.isPlaying = false;
+            TrackManager.currentTrackIndex = 0;
+            TrackManager.playlist = FileManager.GetAllTracks();
+            SetTrackFields();
+            UpdateLabels();
+        }
+
+        private void Playlist_Click(object? sender, EventArgs e)
+        {
+            TrackManager.wavePlayer.Stop();
+            TrackManager.isPlaying = false;
+            TrackManager.currentTrackIndex = 0;
+            var pictureBox = (PictureBox)sender;
+            TrackManager.playlist = FileManager.ReadM3U(pictureBox.Name);
+            SetTrackFields();
+            UpdateLabels();
         }
     }
 }

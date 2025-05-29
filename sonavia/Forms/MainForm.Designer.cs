@@ -31,6 +31,7 @@ namespace sonavia.Forms
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             ButtonClose = new Button();
             PanelTop = new Panel();
             NameLabel = new Label();
@@ -55,10 +56,24 @@ namespace sonavia.Forms
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            panel3 = new Panel();
+            ButtonAddPlaylist = new PictureBox();
+            PanelPlaylists = new Panel();
+            AllTracks = new PictureBox();
             panel4 = new Panel();
+            LabelInfoYear = new Label();
+            LabelInfoGenre = new Label();
+            LabelInfoAlbum = new Label();
+            LabelInfoArtist = new Label();
+            LabelInfoTitle = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
             label4 = new Label();
             panel5 = new Panel();
+            pictureBox1 = new PictureBox();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)AlbumPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonPlay).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ButtonBack).BeginInit();
@@ -67,8 +82,13 @@ namespace sonavia.Forms
             ((System.ComponentModel.ISupportInitialize)ButtonRepeat).BeginInit();
             PanelTrackContainer.SuspendLayout();
             PanelTrackListWrapper.SuspendLayout();
+            PanelTrackList.SuspendLayout();
             PanelTrackTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ButtonAddPlaylist).BeginInit();
+            PanelPlaylists.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)AllTracks).BeginInit();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // ButtonClose
@@ -248,11 +268,11 @@ namespace sonavia.Forms
             // 
             // PanelTrackList
             // 
+            PanelTrackList.Controls.Add(label10);
             PanelTrackList.Location = new Point(0, 0);
             PanelTrackList.Name = "PanelTrackList";
             PanelTrackList.Size = new Size(518, 243);
             PanelTrackList.TabIndex = 2;
-            PanelTrackList.Resize += PanelTrackList_Resize;
             // 
             // CustomScrollBarTrackList
             // 
@@ -315,23 +335,157 @@ namespace sonavia.Forms
             label1.Text = "Name";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // panel3
+            // ButtonAddPlaylist
             // 
-            panel3.BackColor = Color.FromArgb(39, 36, 36);
-            panel3.Location = new Point(12, 38);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(70, 294);
-            panel3.TabIndex = 18;
+            ButtonAddPlaylist.Image = Properties.Resources.addPlaylistButton;
+            ButtonAddPlaylist.Location = new Point(10, 13);
+            ButtonAddPlaylist.Name = "ButtonAddPlaylist";
+            ButtonAddPlaylist.Size = new Size(50, 50);
+            ButtonAddPlaylist.SizeMode = PictureBoxSizeMode.Zoom;
+            ButtonAddPlaylist.TabIndex = 0;
+            ButtonAddPlaylist.TabStop = false;
+            ButtonAddPlaylist.Click += ButtonAddPlaylist_Click;
+            // 
+            // PanelPlaylists
+            // 
+            PanelPlaylists.BackColor = Color.FromArgb(39, 36, 36);
+            PanelPlaylists.Controls.Add(AllTracks);
+            PanelPlaylists.Controls.Add(ButtonAddPlaylist);
+            PanelPlaylists.Location = new Point(12, 38);
+            PanelPlaylists.Name = "PanelPlaylists";
+            PanelPlaylists.Size = new Size(70, 294);
+            PanelPlaylists.TabIndex = 18;
+            // 
+            // AllTracks
+            // 
+            AllTracks.Image = Properties.Resources.AlbumThumbnail;
+            AllTracks.Location = new Point(10, 69);
+            AllTracks.Name = "AllTracks";
+            AllTracks.Size = new Size(50, 50);
+            AllTracks.SizeMode = PictureBoxSizeMode.Zoom;
+            AllTracks.TabIndex = 1;
+            AllTracks.TabStop = false;
+            AllTracks.Click += AllTracks_Click;
             // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(39, 36, 36);
+            panel4.Controls.Add(LabelInfoYear);
+            panel4.Controls.Add(LabelInfoGenre);
+            panel4.Controls.Add(LabelInfoAlbum);
+            panel4.Controls.Add(LabelInfoArtist);
+            panel4.Controls.Add(LabelInfoTitle);
+            panel4.Controls.Add(label9);
+            panel4.Controls.Add(label8);
+            panel4.Controls.Add(label7);
+            panel4.Controls.Add(label6);
+            panel4.Controls.Add(label5);
             panel4.Controls.Add(label4);
             panel4.Controls.Add(panel5);
             panel4.Location = new Point(627, 38);
             panel4.Name = "panel4";
             panel4.Size = new Size(161, 294);
             panel4.TabIndex = 19;
+            // 
+            // LabelInfoYear
+            // 
+            LabelInfoYear.AutoEllipsis = true;
+            LabelInfoYear.Font = new Font("Cascadia Mono", 9F);
+            LabelInfoYear.Location = new Point(57, 244);
+            LabelInfoYear.Name = "LabelInfoYear";
+            LabelInfoYear.Size = new Size(101, 16);
+            LabelInfoYear.TabIndex = 12;
+            LabelInfoYear.Text = "Unknown";
+            // 
+            // LabelInfoGenre
+            // 
+            LabelInfoGenre.AutoEllipsis = true;
+            LabelInfoGenre.Font = new Font("Cascadia Mono", 9F);
+            LabelInfoGenre.Location = new Point(57, 198);
+            LabelInfoGenre.Name = "LabelInfoGenre";
+            LabelInfoGenre.Size = new Size(101, 16);
+            LabelInfoGenre.TabIndex = 11;
+            LabelInfoGenre.Text = "Unknown";
+            // 
+            // LabelInfoAlbum
+            // 
+            LabelInfoAlbum.AutoEllipsis = true;
+            LabelInfoAlbum.Font = new Font("Cascadia Mono", 9F);
+            LabelInfoAlbum.Location = new Point(57, 152);
+            LabelInfoAlbum.Name = "LabelInfoAlbum";
+            LabelInfoAlbum.Size = new Size(101, 16);
+            LabelInfoAlbum.TabIndex = 10;
+            LabelInfoAlbum.Text = "Unknown";
+            // 
+            // LabelInfoArtist
+            // 
+            LabelInfoArtist.AutoEllipsis = true;
+            LabelInfoArtist.Font = new Font("Cascadia Mono", 9F);
+            LabelInfoArtist.Location = new Point(57, 106);
+            LabelInfoArtist.Name = "LabelInfoArtist";
+            LabelInfoArtist.Size = new Size(101, 16);
+            LabelInfoArtist.TabIndex = 9;
+            LabelInfoArtist.Text = "Unknown";
+            // 
+            // LabelInfoTitle
+            // 
+            LabelInfoTitle.AutoEllipsis = true;
+            LabelInfoTitle.Font = new Font("Cascadia Mono", 9F);
+            LabelInfoTitle.Location = new Point(57, 60);
+            LabelInfoTitle.Name = "LabelInfoTitle";
+            LabelInfoTitle.Size = new Size(101, 16);
+            LabelInfoTitle.TabIndex = 8;
+            LabelInfoTitle.Text = "Unknown";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Cascadia Mono", 9F);
+            label9.Location = new Point(3, 244);
+            label9.Name = "label9";
+            label9.Size = new Size(42, 16);
+            label9.TabIndex = 7;
+            label9.Text = "Year:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Cascadia Mono", 9F);
+            label8.Location = new Point(3, 198);
+            label8.Name = "label8";
+            label8.Size = new Size(49, 16);
+            label8.TabIndex = 6;
+            label8.Text = "Genre:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Cascadia Mono", 9F);
+            label7.Location = new Point(3, 152);
+            label7.Name = "label7";
+            label7.Size = new Size(49, 16);
+            label7.TabIndex = 5;
+            label7.Text = "Album:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Cascadia Mono", 9F);
+            label6.Location = new Point(3, 106);
+            label6.Name = "label6";
+            label6.Size = new Size(56, 16);
+            label6.TabIndex = 4;
+            label6.Text = "Artist:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Cascadia Mono", 9F);
+            label5.Location = new Point(3, 60);
+            label5.Name = "label5";
+            label5.Size = new Size(49, 16);
+            label5.TabIndex = 0;
+            label5.Text = "Title:";
             // 
             // label4
             // 
@@ -350,14 +504,34 @@ namespace sonavia.Forms
             panel5.Size = new Size(161, 1);
             panel5.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(627, 338);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(30, 30);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(185, 9);
+            label10.Name = "label10";
+            label10.Size = new Size(181, 21);
+            label10.TabIndex = 0;
+            label10.Text = "There is no tracks!";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(22, 22, 22);
             ClientSize = new Size(800, 425);
+            Controls.Add(pictureBox1);
             Controls.Add(panel4);
-            Controls.Add(panel3);
+            Controls.Add(PanelPlaylists);
             Controls.Add(PanelTrackContainer);
             Controls.Add(VolumeTrackBar);
             Controls.Add(TrackBar);
@@ -388,10 +562,16 @@ namespace sonavia.Forms
             ((System.ComponentModel.ISupportInitialize)ButtonRepeat).EndInit();
             PanelTrackContainer.ResumeLayout(false);
             PanelTrackListWrapper.ResumeLayout(false);
+            PanelTrackList.ResumeLayout(false);
+            PanelTrackList.PerformLayout();
             PanelTrackTop.ResumeLayout(false);
             PanelTrackTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ButtonAddPlaylist).EndInit();
+            PanelPlaylists.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)AllTracks).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -419,12 +599,26 @@ namespace sonavia.Forms
         private Label label1;
         private Label label3;
         private Panel panel2;
-        private Panel panel3;
+        private Panel PanelPlaylists;
         private Panel panel4;
         private Panel panel5;
         private Label label4;
         private Panel PanelTrackList;
         private CustomScrollBar CustomScrollBarTrackList;
         private Panel PanelTrackListWrapper;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label LabelInfoYear;
+        private Label LabelInfoGenre;
+        private Label LabelInfoAlbum;
+        private Label LabelInfoArtist;
+        private Label LabelInfoTitle;
+        private PictureBox ButtonAddPlaylist;
+        private PictureBox pictureBox1;
+        private PictureBox AllTracks;
+        private Label label10;
     }
 }
